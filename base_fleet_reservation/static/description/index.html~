@@ -1,0 +1,157 @@
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+           <h2 class="oe_slogan" style="color:crimson;"><b>Base Fleet Reservation
+</h2>
+           <p class="oe_mt32"  style="color:olive;">
+This module allow employee to request for the vehicle reservation.<br><br><b> Main Features</b><br>
+    * Employee will request for vehicle.<br/>
+    * It will be confirmed by employee.<br/>
+    * Approve Request By the Head of Unit<br/>
+    * Approved Request By the Coordinator<br/>
+    * Reserved Request By the Manager and it will be create Event<br/>
+    * Return info will add to the event from wizard<br/>
+    * Create Invoice by the Reservation Manager<br/>
+    * Send Mail to employees directly after month<br/>
+    For more Details :- https://youtu.be/0UwDqGY8gPA
+    <p class="oe_mt32"  style="color:olive;">
+<b> Menu Items:</b><br>
+    * Vehicle Reservation<br/>
+    * Vehicle Reservation/Vehicle/Vehicle.<br/>
+    * Vehicle Reservation/Reservations/Reservations<br/>
+    * Vehicle Reservation/Configuration/Vehicle Type<br/>
+    * Vehicle Reservation/Configuration/Vehicle Sub Type<br/>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:crimson;">Company Configuration Setting</b></h3>
+       <p style="color:olive;">Add Billing Information.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="company_billing.png">
+       </div>
+       <p style="color:olive;">Add Vehicle Reservation Information.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="company_reservation_info.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:crimson;">Fleet Vehicle</b></h3>
+       <p style="color:olive;">Bill Info for the per k/m.</p>
+       <div class="oe_demo oe_screenshot mb32">
+           <img src="fleet_vehicle_1.png">
+       </div>
+       <p style="color:olive;">Add Reservation Information For the vehicle.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="fleet_vehicle_2.png">
+       </div>
+       <p style="color:olive;">Add Reservat Time Information.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="fleet_vehicle_3.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:crimson;">Vehicle Reservation</b></h3>
+       <p style="color:olive;">Create Vehicle Reservation Employee can create Multiple Request for the Vehicle.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="reservation_1.png">
+       </div>
+       <p style="color:olive;">Create Vehicle Reservation Employee can set other informations.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="reservation_2.png">
+       </div>
+       <p style="color:olive;">Head of Unit Approve button will be visible to the Head of Unit It will approve for the reservation.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="hou_app.png">
+       </div>
+       <p style="color:olive;">Coordinator Approve button will be visible to the Coordinator It will approve for the reservation.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="coordi_app.png">
+       </div>
+       <p style="color:olive;">Manager Approve and Reserve button will be visible to the Reservation Manager It will Reserve the Request.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="manag_app_res.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:crimson;">Reservation meeting Information</b></h3>
+       <p style="color:olive;">Created Event will be open from the Smart Button.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="meeting_btn.png">
+       </div>
+       <p style="color:olive;">List of vehicle reservations meetings.</p>
+       <div class="oe_demo oe_screenshot mt10">
+           <img src="meeting_1.png">
+       </div>
+       <p style="color:olive;">Vehicle reservations meeting Details.</p>
+       <div class="oe_demo oe_screenshot mt10">
+           <img src="meeting_2.png">
+       </div>
+       <p style="color:olive;">Vehicle reservations meeting Reservation Details.</p>
+       <div class="oe_demo oe_screenshot mt10">
+           <img src="meeting_3.png">
+       </div>
+       <p style="color:olive;">Return Vehicle For the invocie billing it will generate from the event add the Return K/M from the Wizard.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="return_btn.png">
+       </div>
+       <p style="color:olive;">Add Return Info From the Wizard.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="return_vehicle_wiz.png">
+       </div>
+       <div class="oe_demo oe_screenshot">
+           <img src="meeting_4.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:crimson;">Create Invoice For Reservation</b></h3>
+       <p style="color:olive;">Create Invoice Button will be create invoice for the return vehicle it will vesible to the manager and coordinator.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="create_invoice_btn.png">
+       </div>
+       <p style="color:olive;">Open Invocies from the given smart Button.</p>
+       <div class="oe_demo oe_screenshot mt8">
+           <img src="invoice_btn.png">
+       </div>
+       <p style="color:olive;">Reservation Invoice.</p>
+       <div class="oe_demo oe_screenshot mt8">
+           <img src="invoice_1.png">
+           <img src="invoice_1_1.png">
+       </div>
+       <p style="color:olive;">Vehicle Reservation Information.</p>
+       <div class="oe_demo oe_screenshot mt8">
+           <img src="invoice_2.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:crimson;">Reservation Groups</b></h3>
+       <p style="color:olive;">Assign Access For the Reservation.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="groups.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:crimson;">Report</b></h3>
+       <p style="color:olive;">Vehicle Reservation Report.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="report.png">
+       </div>
+       <p style="color:olive;">Invoice Report.</p>
+       <div class="oe_demo oe_screenshot">
+           <img src="invoice_report.png">
+       </div>
+   </div>
+</section>
+
+

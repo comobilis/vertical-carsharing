@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="menu_openauto_memebership_main" name="Membership" parent="base_fleet.menu_fleet_vehicle_reservation"/>
+        <menuitem id="openauto_memebership_menu" name="Membership Renew" parent="menu_openauto_memebership_main" action="contract_recurring_invoice_analytic.contract_recurring_invoice_analytic_form"/>
+
+    </data>
+</odoo>

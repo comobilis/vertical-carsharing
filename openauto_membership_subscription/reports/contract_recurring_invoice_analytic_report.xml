@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_contract_document_inherit" inherit_id="contract_recurring_invoice_analytic.report_contract_document">
+            <xpath expr="//table[1]/tr[1]" position="after">
+                    <tr>
+                        <td><strong>Employee</strong></td>
+                        <td><span t-field="doc.custom_employee_id.name"/></td>
+                        <td><strong>Department</strong></td>
+                        <td><span t-field="doc.custom_department_id.name"/></td>
+                    </tr>
+           </xpath>
+        </template>
+    
+    </data>
+</odoo>

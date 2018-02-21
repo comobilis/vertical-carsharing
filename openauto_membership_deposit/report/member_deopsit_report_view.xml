@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <report
+        id="report_membership_deposit" 
+        model="membership.deposit"
+        report_type="qweb-pdf"
+        string="Membership Deposit"
+        name="openauto_membership_deposit.membership_deposit_print"
+        file="openauto_membership_deposit.membership_deposit_print"
+     />
+         
+    <template id="membership_deposit_print">
+        <t t-foreach="docs" t-as="doc">
+        <t t-call="web.internal_layout">
+            <div class="page">
+                <div class="oe_structure"/>
+                <div class="text-right"><strong>Printed by :</strong> <span t-esc="doc.env.user.name"/></div>
+                <div class="text-right" ><strong>Printed on :</strong> <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')"/></div>
+                <div>
+                    <center><h3>Membership Deposit # - <span t-field="doc.name"/> (<span t-field="doc.state"/>)</h3></center>
+                </div>
+                    
+                    <div class="mt32 mb32">
+                        <table class="table table-condensed">
+                           <tr>
+                               <td><strong>Partner </strong></td>
+                               <td><span t-field="doc.partner_id.name"/></td>
+                               <td><strong>Product</strong></td>
+                               <td> <span t-field="doc.product_id.name"/></td>
+                           </tr>
+                           <tr>
+                                <td><strong>Created By</strong></td>
+                               <td> <span t-field="doc.create_user_id.name"/></td>
+                               <td><strong>Create Date</strong></td>
+                               <td> <span t-field="doc.partner_id.name"/></td>
+                           </tr>
+                           <tr>
+                               <td><strong>Company </strong></td>
+                               <td><span t-field="doc.company_id.name"/></td>
+                               <td><strong>RFID Code</strong></td>
+                               <td> <span t-field="doc.rfid_code"/></td>
+                           </tr>
+                           <tr>
+                                <td></td>
+                                <td></td>
+                               <td><strong>Deposit Amount</strong></td>
+                               <td><span t-field="doc.deposit_amount" widget="monetary"/></td>
+                           </tr>
+                           <tr>
+                                <td></td>
+                                <td></td>
+                               <td><strong>Currency</strong></td>
+                               <td><span t-field="doc.currency_id.name"/></td>
+                           </tr>
+                        </table>
+                    </div>
+            </div>
+        </t>
+        </t>
+    </template>
+        
+</data>
+</odoo>
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="head_of_unit_group" model="res.groups">
+            <field name="name">Head of Unit</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="coordinator_group" model="res.groups">
+            <field name="name">Coordinator</field>
+            <field name="implied_ids" eval="[(4, ref('hr.group_hr_manager'))]"/>
+        </record>
+
+        <record id="external_service_provider_group" model="res.groups">
+            <field name="name">External Service Provider </field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="reservation_manager_group" model="res.groups">
+            <field name="name">Reservation Manager </field>
+            <field name="implied_ids" eval="[(4, ref('base_employee.coordinator_group'))]"/>
+        </record>
+
+    </data>
+</odoo>
+

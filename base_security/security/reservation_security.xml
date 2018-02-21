@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        
+<!--        PROFILE RR-->
+        <record id="reservation_employee_own_profile_rule" model="ir.rule">
+            <field ref="hr_contract.model_hr_employee" name="model_id"/>
+            <field name="name">Own Employee Profile</field>
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+            <field eval="[(4,ref('base.group_user'))]" name="groups"/>
+        </record>
+
+        <record id="reservation_hou_own_profile_rule" model="ir.rule">
+            <field ref="hr_contract.model_hr_employee" name="model_id"/>
+            <field name="name">Own Head of Unit Profile</field>
+            <field name="domain_force">[('department_id', '=', user.department_id.id)]</field>
+            <field eval="[(4,ref('base_employee.head_of_unit_group'))]" name="groups"/>
+        </record>
+        
+        <record id="reservation_coordinator_profile_rules" model="ir.rule">
+            <field ref="hr_contract.model_hr_employee" name="model_id"/>
+            <field name="name">Reservation Officer Profile</field>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field eval="[(4,ref('base_employee.coordinator_group'))]" name="groups"/>
+        </record>
+
+        <record id="reservation_external_service_profile_rule" model="ir.rule">
+            <field ref="hr_contract.model_hr_employee" name="model_id"/>
+            <field name="name">External Service Provicer Profile</field>
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+            <field eval="[(4,ref('base_employee.external_service_provider_group'))]" name="groups"/>
+        </record>
+<!--        PROFILE RR-->        
+        
+        
+<!--        <record id="reservation_hod_rule" model="ir.rule">-->
+<!--            <field ref="model_fleet_vehicle_reservation" name="model_id"/>-->
+<!--            <field name="name">Reservation HOD</field>-->
+<!--            <field name="domain_force">[(1,'=',1)]</field>-->
+<!--            <field eval="[(4,ref('base_employee.head_of_unit_group'))]" name="groups"/>-->
+<!--        </record>-->
+
+<!--        <record id="reservation_manager_rule" model="ir.rule">-->
+<!--            <field ref="model_fleet_vehicle_reservation" name="model_id"/>-->
+<!--            <field name="name">Reservation Manager</field>-->
+<!--            <field name="domain_force">[(1,'=',1)]</field>-->
+<!--            <field eval="[(4,ref('base_employee.reservation_manager_group'))]" name="groups"/>-->
+<!--        </record>-->
+
+    </data>
+</odoo>
+

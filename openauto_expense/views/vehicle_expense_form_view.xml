@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="vehicle_expense_form_view" model="ir.ui.view">
+            <field name="name">Vehicle Expense Form</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.hr_expense_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tax_ids']" position="after">
+                    <field name="vehicle_reservation_id"/>
+                    <field name="vehicle_reservation_schedule_id" domain="[('fleet_vehicle_reservation_id', '=', vehicle_reservation_id)]"/>
+                    <field name="vehicle_id"/>
+                </xpath>
+                <xpath expr="//field[@name='employee_id']" position="after">
+                     <field name="custom_department_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="vehicle_expense_tree_view" model="ir.ui.view">
+            <field name="name">Vehicle Expense Tree Form</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.view_expenses_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="custom_department_id"/>
+                    <field name="vehicle_reservation_id"/>
+                    <field name="vehicle_reservation_schedule_id"/>
+                    <field name="vehicle_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="vehicle_expense_filter_view" model="ir.ui.view">
+            <field name="name">Vehicle Expense Filter</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="custom_department_id"/>
+                    <field name="vehicle_reservation_id"/>
+                    <field name="vehicle_reservation_schedule_id"/>
+                    <field name="vehicle_id"/>
+                </xpath>
+                <xpath expr="//group" position="inside">
+                    <filter string="Reservation" domain="[]" context="{'group_by': 'vehicle_reservation_id'}"/>
+                    <filter string="Reservation Schedule" domain="[]" context="{'group_by': 'vehicle_reservation_schedule_id'}"/>
+                    <filter string="Vehicle" domain="[]" context="{'group_by': 'vehicle_id'}"/>
+                    <filter string="Department" domain="[]" context="{'group_by': 'custom_department_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <menuitem id="menu_vehicle_expense_my_expenses" name="Vehicle Expenses" sequence="12" parent="base_fleet.menu_fleet_vehicle_reservation" groups="base.group_user"/>
+        <menuitem id="menu_vehicle_expense_my_expenses_to_submit" name="Expenses to Submit" sequence="1" parent="menu_vehicle_expense_my_expenses" action="hr_expense.hr_expense_actions_my_unsubmitted"/>
+        <menuitem id="menu_vehicle_expense_sheet_my_reports_refused" name="Refused Reports" sequence="2" parent="menu_vehicle_expense_my_expenses" action="hr_expense.action_hr_expense_sheet_my_refused"/>
+        <menuitem id="menu_vehicle_expense_sheet_my_reports" name="Expense Reports" sequence="3" parent="menu_vehicle_expense_my_expenses" action="hr_expense.action_hr_expense_sheet_my_all"/>
+
+    </data>
+</odoo>

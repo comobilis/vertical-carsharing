@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="res_company_inherit_form_view" model="ir.ui.view">
+            <field name="name">Company Inherit form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page name="billing_acc_info" string="Billing / Accounting">
+                        <group name="billing/acc">
+                            <group name="charge_deposit">
+                                <field name="charge_deposit"/>
+<!--                                <field name="deposit_charge_amount" attrs="{'invisible':[('charge_deposit', '=', False)],'required':[('charge_deposit','=',True)]}"/>-->
+                            </group>
+                            <group name="yearly_employee_fee">
+                                <field name="yearly_employee_fee"/>
+                                <field name="yearly_employee_fee_amt" attrs="{'invisible':[('yearly_employee_fee', '=', False)],'required':[('yearly_employee_fee','=',True)]}"/>
+                            </group>
+                            <group name="yearly_unit_fee">
+                                <field name="yearly_unit_fee"/>
+                                <field name="yearly_unit_fee_amt" attrs="{'invisible':[('yearly_unit_fee', '=', False)],'required':[('yearly_unit_fee','=',True)]}"/>
+                            </group>
+<!--                            <group name="advance_payment">-->
+<!--                                <field name="advance_payment"/>-->
+<!--                                <field name="advance_payment_option" attrs="{'invisible':[('advance_payment', '=', False)],'required':[('advance_payment','=',True)]}"/>-->
+<!--                            </group>-->
+<!--                            <field name="advance_payment_level_ids" attrs="{'invisible':['|',('advance_payment', '=', False),('advance_payment_option', '!=', 'levels')]}">-->
+<!--                                <tree editable="bottom">-->
+<!--                                    <field name="payment_level_id"/>-->
+<!--                                    <field name="payment_level"/>-->
+<!--                                    <field name="amount"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+                        </group>
+                    </page>
+                    <page name="vehicle_reservation_info" string="Vehicle Reservation Information">
+                        <group name="vehicle_reservation">
+                            <group>
+                                <field name="max_vehicle_perunit"/>
+<!--                                <field name="is_reservation_block"/>-->
+                                <field name="reserve_block_days"/>
+                            </group>
+                            <group>
+<!--                                <field name="is_car_taken"/>-->
+                                <field name="car_taken_minute" widget="float_time"/>
+                                <field name="allow_external_user"/>
+                                <field name="employee_present_status" attrs="{'invisible':[('allow_external_user', '!=', True)]}"/>
+                                <field name="person_name" attrs="{'invisible':['|',('allow_external_user', '!=', True),('employee_present_status', '!=', 'absent')], 'required':[('employee_present_status', '=', 'absent'),('allow_external_user', '=', True)]}"/>
+                                <field name="person_phone" attrs="{'invisible':['|',('allow_external_user', '!=', True),('employee_present_status', '!=', 'absent')],'required':[('employee_present_status', '=', 'absent'),('allow_external_user', '=', True)]}"/>
+                            </group>
+                            <group name="invoice_group">
+                                <field name="invoice_amount"/>
+                                <field name="allow_minimum_month_invoice"/>
+                                <field name="reimbursement_of_expenses"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

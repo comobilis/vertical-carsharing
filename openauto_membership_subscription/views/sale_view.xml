@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="openauto_sale_form_inherit_emp_department" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='fiscal_position_id']" position="after">
+                    <field name="custom_employee_id"/>
+                    <field name="custom_department_id"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="openauto_sale_search_inherit_employee" model="ir.ui.view">
+            <field name="name">sale.order.search</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.sale_order_view_search_inherit_sale" />
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="custom_employee_id"/>
+                    <field name="custom_department_id"/>
+                </xpath>
+                <xpath expr="//search/group" position="after">
+                    <filter string="Employee" context="{'group_by': 'custom_employee_id'}"/>
+                    <filter string="Department" context="{'group_by': 'custom_department_id'}"/>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

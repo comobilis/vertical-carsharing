@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="return_vehicle_wiz_view" model="ir.ui.view">
+            <field name="name">return.vehicle.wiz.form</field>
+            <field name="model">return.vehicle.wiz</field>
+                <field name="arch" type="xml">
+                    <form string="Return Vehicle">
+                        <label string="This wizard help to count bill amount among to the km."/>
+                        <group>
+                            <group>
+                                <field name="return_date_time"/>
+                            </group>
+                            <group>
+                                <field name="return_emoployee_id"/>
+                            </group>
+                            <group>
+                                <field name="total_km" required="1"/>
+                                <field name="extra_time_no_reservation"/>
+                                <field name="prolog_hours" widget="float_time"/>
+                                <label for="return_confirmation"/>
+                                <div>
+                                    <field name="return_confirmation" required="1" nolabel="1"/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="total_hour"/>
+                            </group>
+                        </group>
+                        <footer>
+                            <button name="action_return_vehicle" type="object" string="Return Now" class="btn-primary"/>
+                            or
+                            <button string="_Cancel" class="btn-default" special="cancel" />
+                        </footer>
+                    </form>
+                </field>
+        </record>
+        
+        <record id="action_return_vehicle" model="ir.actions.act_window">
+            <field name="name">Return Vehicle</field>
+            <field name="res_model">return.vehicle.wiz</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="return_vehicle_wiz_view"/>
+            <field name="context">{'default_is_task': True, 'search_default_task_id': [active_id], 'default_task_id': active_id}</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+        </record>
+   </data>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_employee_deposit_form_view" model="ir.ui.view">
+            <field name="name">Hr Employee vehicle deposit form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page/group/group[@name='advance_payment_level']" position="before">
+                    <group>
+                        <field name="rfid_key"/>
+                        <field name="rfid_key_comp"/>
+                        <field name="payment_level_id"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_employee_deposit_filter_view" model="ir.ui.view">
+            <field name="name">Hr Employee vehicle deposit filter</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='job_id']" position="after">
+                    <field name="rfid_key"/>
+                    <field name="payment_level_id"/>
+                </xpath>
+                <xpath expr="//group" position="inside">
+                    <filter name="payment_level_id" string="Memebership Level" domain="[]" context="{'group_by':'payment_level_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

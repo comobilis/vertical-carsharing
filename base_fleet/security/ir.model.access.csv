@@ -1,0 +1,4 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_vehicle_type_employee,fleet_vehicle_type_employee,base_fleet.model_fleet_vehicle_type,base.group_user,1,0,0,0
+access_vehicle_sub_type_employee,fleet_vehicle_sub_type_employee,base_fleet.model_fleet_vehicle_sub_type,base.group_user,1,0,0,0
+access_fleet_vehicle_dest_cost_employee,fleet_vehicle_dest_cost_employee,base_fleet.model_vehicle_dest_cost,base.group_user,1,0,0,0

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="fleet_vehicle_cost_inherit_form_view" model="ir.ui.view">
+            <field name="name">fleet.vehicle Cost form</field>
+            <field name="model">fleet.vehicle.cost</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_costs_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="analytic_account_id"/>
+                    <field name="analytic_line_id"/>
+<!--                    <field name="hr_expense_id"/>-->
+                </xpath>
+            </field>
+        </record>
+        
+        <menuitem id="menu_fleet_vehicle_cost_view" name="Vehicle Costs" parent="base_fleet.menu_fleet_vehicle_main_view" action="fleet.fleet_vehicle_costs_action" sequence="1"/>
+        
+    </data>
+</odoo>

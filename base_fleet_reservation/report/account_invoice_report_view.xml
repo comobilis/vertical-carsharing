@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <template id="vehicle_reservation_invoice_report" inherit_id="account.report_invoice_document">
+        <xpath expr="//table[@name='invoice_line_table']" position="before">
+            <div class="row mt32 mb32">
+                <div class="col-xs-2" t-if="o.reservation_employee_id">
+                    <strong>Employee:</strong>
+                    <p t-field="o.reservation_employee_id.name"/>
+                </div>
+                <div class="col-xs-2" t-if="o.department_id">
+                    <strong>Department:</strong>
+                    <p t-field="o.department_id.name"/>
+                </div>
+            </div>
+        </xpath>
+<!--        <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[@class='text-right']" position="before">-->
+<!--            <th>Vehicle</th>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//table[@name='invoice_line_table']/tbody/tr/td" position="before">-->
+<!--            <td><span t-field="l.vehicle_id.name"/></td>-->
+<!--        </xpath>-->
+    </template>
+        
+</data>
+</odoo>
+

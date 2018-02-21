@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="fleet_vehicle_sub_type_form_view" model="ir.ui.view">
+            <field name="name">Fleet Vehicle Type form</field>
+            <field name="model">fleet.vehicle.sub.type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="action_show_vehicles"
+                                    string="Vehicles" type="object"
+                                    icon="fa-truck" ></button>
+                        </div>
+                        <group name="vehicle_sub_type">
+                            <group name="vehicle_sub_type_name">
+                                <field name="name"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="fleet_vehicle_sub_type_tree_view" model="ir.ui.view">
+            <field name="name">fleet.vehicle.sub.type tree</field>
+            <field name="model">fleet.vehicle.sub.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                     <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_fleet_vehicle_sub_type" model="ir.actions.act_window">
+            <field name="name">Fleet Vehicle Sub Type</field>
+            <field name="res_model">fleet.vehicle.sub.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help">Fleet Vehicle Sub Type</field>
+        </record>
+
+        <menuitem id="menu_fleet_vehicle_sub_type" name="Vehicle Sub Type" parent="fleet.fleet_configuration" 
+        action="action_fleet_vehicle_sub_type"/>
+            
+    </data>
+</odoo>

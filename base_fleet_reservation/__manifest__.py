@@ -1,0 +1,57 @@
+# -*- coding: utf-8 -*-
+
+# Part of Openauto
+#See LICENSE file for full copyright and licensing details.
+{
+    'name': 'Openauto - Base Fleet Reservation',
+    'price': 0.0,
+    'currency': 'EUR',
+    'version': '1.0',
+    'category': 'Project',
+    'license': 'Other proprietary',
+    'summary': """Openauto - Base Fleet Reservation""",
+    'description': """
+    """,
+    'author': "Openauto",
+    'website': "http://www.openauto.ch",
+    'depends': ['base_fleet',
+                'account_invoicing',
+                'account_cancel',
+                'base_employee',
+                'calendar',
+                'base_company',
+                ],
+    'data': [
+        'security/ir.model.access.csv',
+#        'security/fleet_reservation_security.xml',
+        'data/account_invoice_mail_data.xml',
+#        'data/vehicle_service_data.xml',
+        'report/account_invoice_report_view.xml',
+        'report/reservation_line_report_view.xml',
+        'report/analytic_line_profitability_report_view.xml',
+#        'report/expense_repost_view.xml',
+        'wizard/recieve_vehicle_wiz_view .xml',
+        'wizard/return_vehicle_wiz_view.xml',
+        'wizard/reservation_schedule_invoice_wiz_view.xml',
+        'data/fleet_vehicle_reservation_sequence.xml',
+        'report/vehicle_reservation_report_view.xml',
+        'views/res_company_view.xml',
+        'views/membership_payment_level.xml',
+        'views/vehicle_reservation_view.xml',
+        'views/calendar_view.xml',
+        'views/hr_employee_view.xml',
+        'views/product_view.xml',
+        'views/account_invoice_views.xml',
+        'views/fleet_vehicle_view.xml',
+        'views/reservation_schedule_at_invoice_view.xml',
+        'views/vehicle_pricelist_views.xml',
+        'views/fleet_vehicle_cost_view.xml',
+        'views/hr_department_view.xml',
+        'views/res_users_view.xml',
+        'views/res_partner_view.xml',
+    ],
+    'installable': True,
+    'application': False,
+}
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

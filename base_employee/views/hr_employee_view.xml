@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_employee_inherit_fleet_form_view" model="ir.ui.view">
+            <field name="name">Hr Employee inherit form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page/group/group[@name='advance_payment_level']" position="before">
+                    <group name="rfid_key"/>
+                        <field name="rfid_keydd"/>
+<!--                        <field name="payment_level_id"/>-->
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

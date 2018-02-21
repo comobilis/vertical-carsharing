@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="recieve_vehicle_wiz_view" model="ir.ui.view">
+            <field name="name">recieve.vehicle.wiz.form</field>
+            <field name="model">recieve.vehicle.wiz</field>
+                <field name="arch" type="xml">
+                    <form string="Recieve Vehicle">
+                        <label string="This wizard help to count bill amount among to the km."/>
+                        <group>
+                            <group>
+                                <field name="check_in_datetime"/>
+                                <field name="recieve_employee_id"/>
+                            </group>
+                        </group>
+                        <footer>
+                            <button name="action_recieve_vehicle" type="object" string="Check In Now" class="btn-primary"/>
+                            or
+                            <button string="_Cancel" class="btn-default" special="cancel" />
+                        </footer>
+                    </form>
+                </field>
+        </record>
+        
+        <record id="action_recieve_vehicle" model="ir.actions.act_window">
+            <field name="name">Recieve Vehicle</field>
+            <field name="res_model">recieve.vehicle.wiz</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="recieve_vehicle_wiz_view"/>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+        </record>
+   </data>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="reservation_schedule_invoice_wiz_view" model="ir.ui.view">
+            <field name="name">reservation.schedule.invoice.wiz.form</field>
+            <field name="model">reservation.schedule.invoice.wiz</field>
+                <field name="arch" type="xml">
+                    <form string="Schedule Invoice">
+                        <label string="This wizard help to create invoice."/>
+                        <footer>
+                            <button name="action_create_invoice" type="object" string="Create Invoice" class="btn-primary"/>
+                            or
+                            <button string="_Cancel" class="btn-default" special="cancel" />
+                        </footer>
+                    </form>
+                </field>
+        </record>
+        
+<!--        <record id="action_recieve_vehicle" model="ir.actions.act_window">-->
+<!--            <field name="name">Recieve Vehicle</field>-->
+<!--            <field name="res_model">recieve.vehicle.wiz</field>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="view_id" ref="recieve_vehicle_wiz_view"/>-->
+<!--            <field name="view_type">form</field>-->
+<!--            <field name="target">new</field>-->
+<!--        </record>-->
+   </data>
+</odoo>

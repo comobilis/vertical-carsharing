@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="res_user_membership_level_form_view" model="ir.ui.view">
+            <field name="name">Res User Memebership Level form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='department_id']" position="after">
+                    <field name="rfid_key"/>
+                    <field name="payment_level_id"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="res_user_membership_level_search_view" model="ir.ui.view">
+            <field name="name">Res User Memebership Level search form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='share']" position="after">
+                    <field name="rfid_key"/>
+                    <field name="payment_level_id"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Membership Level" context="{'group_by':'payment_level_id'}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

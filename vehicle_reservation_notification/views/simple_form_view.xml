@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="" model="ir.ui.view">
+            <field name="name"></field>
+            <field name="model"></field>
+            <field name="arch" type="xml">
+                <form name="">
+                    <header name="">
+                        <button name="emthod_name" string="Set to Draft" type="object" states="cancel,reject"/>
+                        
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,reserved,approve_hod,approve_offi" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="method_name"
+                                    string="" type="object"
+                                    icon="fa-bars" ><i class=""></i></button>
+                        </div>
+                        <div class="oe_title" name="h1_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group name="">
+                            <group name="">
+                                <field name=""/>
+                            </group>
+                            <group name="">
+                                <field name=""/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="" string="">
+                            </page>
+                            <div class="oe_clear"/>
+                        </notebook>
+                        
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="" model="ir.ui.view">
+            <field name="name"></field>
+            <field name="model"></field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name=""/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="" model="ir.ui.view">
+            <field name="name"></field>
+            <field name="model"></field>
+            <field name="arch" type="xml">
+                <search string="Vehicle Reservation">
+                    <field name="" string=""/>
+                    <filter string="" domain=""/>
+                    <group expand="0" string="Group By">
+                        <filter string="" domain="" context="{'group_by':'id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="" model="ir.actions.act_window">
+            <field name="name">Name of Action</field>
+            <field name="res_model"></field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help">Help for Action</field>
+        </record>
+
+        <menuitem id="" name="" parent="" groups=""/>
+            
+    </data>
+</odoo>

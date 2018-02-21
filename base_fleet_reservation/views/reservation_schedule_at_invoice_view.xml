@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="fleet_vehicle_reservation_schedule_form_view" model="ir.ui.view">
+            <field name="name">Fleet Vehicle Reservation Schedule form</field>
+            <field name="model">vehicle.reservation.schedule</field>
+            <field name="arch" type="xml">
+                <form name="vehicle_reservation" create="false" edit="false">
+                    <sheet>
+                        <group name="vehicle_reserv_schedule">
+                            <group name="reservation_schedule_first">
+                                <field name="fleet_vehicle_reservation_id"/>
+                                <field name="employee_id"/>
+                                <field name="department_id"/>
+                                <field name="partner_id"/>
+                                <field name="vehicle_type_id"/>
+                                <field name="vehicle_sub_type_id"/>
+                                <field name="vehicle_id"/>
+                                <field name="company_id"/>
+                                <field name="is_service_vehicle_reservation"/>
+                            </group>
+                            <group name="reservation_schedule_second">
+                                <field name="reservation_date"/>
+                                <field name="start_date_time"/>
+                                <field name="end_date_time"/>
+                                <field name="is_return"/>
+                                <field name="billing_type"/>
+                                <field name="invoice_id"/>
+                                <field name="invoice_state"/>
+                                <field name="is_invoice_created"/>
+                                <field name="total_km"/>
+                                <field name="total_hour"/>
+                                <field name="extra_time_no_reservation"/>
+                                <field name="prolog_hours" widget="float_time"/>
+                                <field name="invoice_amount_to_pay"/>
+                            </group>
+                        </group>
+                        <field name="note"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <record id="fleet_vehicle_reservation_schedule_tree_view" model="ir.ui.view">
+            <field name="name">Vehicle Reservation Schedule tree</field>
+            <field name="model">vehicle.reservation.schedule</field>
+            <field name="arch" type="xml">
+                <tree create="false">
+                    <field name="fleet_vehicle_reservation_id"/>
+                    <field name="vehicle_type_id"/>
+                    <field name="vehicle_sub_type_id"/>
+                    <field name="billing_type"/>
+                    <field name="vehicle_id"/>
+                    <field name="note"/>
+                    <field name="start_date_time"/>
+                    <field name="end_date_time"/>
+                    <field name="is_return"/>
+                    <field name="total_km"/>
+                    <field name="total_hour"/>
+                    <field name="prolog_hours" widget="float_time"/>
+                    <field name="invoice_amount_to_pay"/>
+                </tree>
+            </field>
+        </record>
+        
+        
+        <record id="fleet_vehicle_reserv_schedule_search" model="ir.ui.view">
+            <field name="name">Fleet Vehicle Reservation Schedule Filter</field>
+            <field name="model">vehicle.reservation.schedule</field>
+            <field name="arch" type="xml">
+                <search string="Vehicle Reservation Schedule">
+                    <filter name="creatable_invoice" string="Invoice Not Create" domain="[('is_return', '=', True),('is_invoice_created', '=', False),('is_service_vehicle_reservation', '=', False)]"/>
+                    <filter name="is_return" string="Is Return" domain="[('is_return', '=', True)]"/>
+                    <separator/>
+<!--                    <filter name="is_invoice" string="Invoiced" domain="[('invoice_id', '!=', False)]"/>-->
+<!--                    <filter name="is_invoice" string="Not Invoiced" domain="[('invoice_id', '=', False)]"/>-->
+                    <filter name="is_invoice_created" string="Invoiced" domain="[('is_invoice_created', '!=', False)]"/>
+                    <filter name="is_invoice_not_created" string="Not Invoiced" domain="[('is_invoice_created', '=', False)]"/>
+                    <separator/>
+                    <filter name="is_service_vehicle_reservation" string="Not Service Vehicle Reservation" domain="[('is_service_vehicle_reservation', '=', False)]"/>
+                    <filter name="is_service_vehicle_reservation" string="Service Vehicle Reservation" domain="[('is_service_vehicle_reservation', '!=', False)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Vehicle Type" domain="" context="{'group_by':'vehicle_type_id'}"/>
+                        <filter string="Vehicle Sub Type" domain="" context="{'group_by':'vehicle_sub_type_id'}"/>
+                        <filter string="Vehicle" domain="" context="{'group_by':'vehicle_id'}"/>
+                        <filter string="Employee" domain="" context="{'group_by':'employee_id'}"/>
+                        <filter string="Partner" domain="" context="{'group_by':'partner_id'}"/>
+                        <filter string="Start Date" domain="" context="{'group_by':'start_date_time'}"/>
+                        <filter string="End Date" domain="" context="{'group_by':'end_date_time'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        
+        <record id="action_fleet_vehicle_reservation_schedule" model="ir.actions.act_window">
+            <field name="name">Vehicle Reservations Schedule</field>
+            <field name="res_model">vehicle.reservation.schedule</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="fleet_vehicle_reserv_schedule_search"/>
+            <field name="context">{'search_default_creatable_invoice': True,'group_by':'invoice_partner_id'}</field>
+            <field name="help">Vehicle Reservations</field>
+        </record>
+
+        <act_window
+            id="action_create_invoice"
+            name="Create Invoice"
+            res_model="reservation.schedule.invoice.wiz"
+            src_model="vehicle.reservation.schedule"
+            view_mode="form"
+            multi="True"
+            target="new"
+            key2="client_action_multi"
+        />
+        
+        <menuitem id="menu_fleet_vehicle_reservation_schedule" name="Vehicle Reservations" parent="account.menu_finance" 
+        action="action_fleet_vehicle_reservation_schedule" groups="account.group_account_invoice"/>
+    </data>
+</odoo>

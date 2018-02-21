@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="fleet_vehicle_reservation_form_view" model="ir.ui.view">
+            <field name="name">Fleet Vehicle Reservation form</field>
+            <field name="model">fleet.vehicle.reservation</field>
+            <field name="arch" type="xml">
+                <form name="vehicle_reservation">
+                    <header name="reservation_header">
+                        <button name="action_set_to_draft" string="Set to Draft" type="object" states="cancel,reject"/>
+                        <button name="action_confirm" class="oe_highlight" string="Confirm" type="object" states="draft" groups="base.group_user"/>
+                        <button name="action_approve_hod" class="oe_highlight" string="Head of Unit Approve" type="object" states="confirm" groups="base_employee.head_of_unit_group"/>
+                        <button name="action_approve_offi" class="oe_highlight" string="Coordinator Approve" type="object" states="approve_hod" groups="base_employee.coordinator_group"/>
+                        <button name="action_reserve" class="oe_highlight" string="Manager Approve and Reserve" type="object" states="approve_offi" groups="base_employee.reservation_manager_group"/>
+<!--                        <button name="action_create_invoice" class="oe_highlight" string="Create Invoice" type="object" states="reserved" groups="base_employee.coordinator_group,base_employee.reservation_manager_group" attrs="{'invisible':[('is_cancel_invoice','=',False)]}"/>-->
+                        <button name="action_reject" string="Reject" type="object" states="approve_hod,approve_offi"/>
+                        <button name="action_cancle" string="Cancel" type="object" states="draft,confirm"/>
+                        
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,reserved,approve_hod,approve_offi" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="action_calendar_event"
+                                    string="Reservations" type="object"
+                                    icon="fa-bars" ><i class=""></i></button>
+                            <button class="oe_stat_button" name="action_invoice"
+                                    string="Invoices" type="object"
+                                    icon="fa-pencil-square-o" />
+                        </div>
+                        <div class="oe_title" name="h1_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group name="vehicle_reserv">
+                            <group name="reservation_employee">
+                                <field name="reserving_employee_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="department_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="partner_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="company_id"/>
+                                <field name="is_cancel_invoice" invisible="True"/>
+                            </group>
+                            <group name="reservation_create">
+                                <field name="created_user_id"/>
+                                <field name="create_date"/>
+                                <field name="pricelist_id"/>
+                                <field name="currency_id"/>
+                                <field name="refernce" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            </group>
+                            <group name="reservation_approval" string="Approvals">
+                                <field name="hou_user_id"/>
+                                <field name="invoice_partner_id"/>
+                                <field name="coordinator_user_id"/>
+                                <field name="manager_user_id"/>
+                            </group>
+                            <group name="reservation_approval_date" string="Approval Dates">
+                                <field name="hou_approved_date_time"/>
+                                <field name="coordinator_approved_date_time"/>
+                                <field name="manager_approved_date_time"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="reservation_schedule" string="Reservation Schedule">
+                                <field name="reservation_schedule_ids" attrs="{'readonly': [('state','in',['reserved', 'invoice', 'paid'])]}">
+                                    <tree editable="bottom">
+                                        <field name="vehicle_type_id"/>
+                                        <field name="vehicle_sub_type_id"/>
+                                        <field name="billing_type"/>
+                                        <field name="vehicle_id" domain="[('is_reservable','=',True),('vehicle_type_id','=',vehicle_type_id),('vehicle_sub_type_id','=',vehicle_sub_type_id)]"/>
+                                        <field name="department_id"/>
+                                        <field name="note"/>
+                                        <field name="start_date_time"/>
+                                        <field name="end_date_time"/>
+                                        <field name="is_return"/>
+                                        <field name="total_km"/>
+                                        <field name="total_hour"/>
+                                        <field name="invoice_amount_to_pay"/>
+                                    </tree>
+<!--                                    <form>-->
+<!--                                        <group>-->
+<!--                                            <group>-->
+<!--                                                <field name="vehicle_type_id"/>-->
+<!--                                                <field name="vehicle_sub_type_id"/>-->
+<!--                                                <field name="billing_type"/>-->
+<!--                                                <field name="vehicle_id" domain="[('is_reservable','=',True),('vehicle_type_id','=',vehicle_type_id),('vehicle_sub_type_id','=',vehicle_sub_type_id)]"/>-->
+<!--                                                <field name="department_id"/>-->
+<!--                                                <field name="note"/>-->
+<!--                                                <field name="start_date_time"/>-->
+<!--                                            </group>-->
+<!--                                            <group>-->
+<!--                                                <field name="end_date_time"/>-->
+<!--                                                <field name="is_service_vehicle_reservation"/>-->
+<!--                                                <field name="reservation_service_type_id"/>-->
+<!--                                                <field name="is_return"/>-->
+<!--                                                <field name="total_km"/>-->
+<!--                                                <field name="total_hour"/>-->
+<!--                                                <field name="invoice_amount_to_pay"/>-->
+<!--                                            </group>-->
+<!--                                        </group>-->
+<!--                                    </form>-->
+                                </field>
+                                <field name="note" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            </page>
+                            <page name="other_info" string="Other Info">
+                                <group name="other">
+                                    <group name="ride_share">
+                                        <field name="is_ride_share" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                        <field name="rides_msg" attrs="{'invisible':[('is_ride_share', '=', False)],'readonly':[('state','!=','draft')]}"/>
+                                    </group>
+                                    <group name="other_reserve">
+                                        <field name="is_reserve_for_other" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                        <field name="employee_present_status" attrs="{'invisible':[('is_reserve_for_other', '!=', True)]}"/>
+                                        <field name="person_name" attrs="{'invisible':['|',('is_reserve_for_other', '!=', True),('employee_present_status', '!=', 'absent')], 'required':[('employee_present_status', '=', 'absent'),('is_reserve_for_other', '=', True)]}"/>
+                                        <field name="person_phone" attrs="{'invisible':['|',('is_reserve_for_other', '!=', True),('employee_present_status', '!=', 'absent')],'required':[('employee_present_status', '=', 'absent'),('is_reserve_for_other', '=', True)]}"/>
+<!--                                        <field name="phone_number" attrs="{'invisible':[('is_reserve_for_other', '=', False)],'required' : [('is_reserve_for_other', '=', True)],'readonly':[('state','!=','draft')]}"/>-->
+                                    </group>
+                                    <group name="service_vehicle">
+                                        <field name="is_service_vehicle_reservation" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                        <field name="reservation_service_type_id" attrs="{'invisible':[('is_service_vehicle_reservation', '=', False)],'required' : [('is_service_vehicle_reservation', '=', True)],'readonly':[('state','!=','draft')]}"/>
+                                    </group>
+                                </group>
+                            </page>
+<!--                            <page name="approval_info" string="Reservation Approval Info">-->
+<!--                                <group>-->
+<!--                                    <group name="hou_approval">-->
+<!--                                        <field name="hou_user_id"/>-->
+<!--                                        <field name="hou_approved_date_time"/>-->
+<!--                                        <field name="coordinator_user_id"/>-->
+<!--                                        <field name="coordinator_approved_date_time"/>-->
+<!--                                    </group>-->
+<!--                                    <group name="manager_approval">-->
+<!--                                        <field name="manager_user_id"/>-->
+<!--                                        <field name="manager_approved_date_time"/>-->
+<!--                                    </group>-->
+<!--                                </group>-->
+<!--                            </page>-->
+                            <field name="note" class="oe_inline" placeholder="Write something ..."/>
+                            <div class="oe_clear"/>
+                        </notebook>
+                        
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="fleet_vehicle_reservation_tree_view" model="ir.ui.view">
+            <field name="name">Vehicle Reservation tree</field>
+            <field name="model">fleet.vehicle.reservation</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="reserving_employee_id"/>
+                    <field name="department_id"/>
+                    <field name="state" string="Status"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_fleet_vehicle_reservation_search" model="ir.ui.view">
+            <field name="name">Fleet Vehicle Reservation</field>
+            <field name="model">fleet.vehicle.reservation</field>
+            <field name="arch" type="xml">
+                <search string="Vehicle Reservation">
+                    <field name="name" string="Reservation"/>
+                    <filter string="Pending" domain="[('state','=','draft')]"/>
+                    <filter string="Confirm" domain="[('state','=','confirm')]"/>
+                    <filter string="Reserved" domain="[('state','=','reserved')]"/>
+                    <filter string="Cancel" domain="[('state','=','cancel')]"/>
+                    <field name="name"/>
+                    <field name="department_id"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Employee" domain="" context="{'group_by':'reserving_employee_id'}"/>
+                        <filter string="Department" domain="" context="{'group_by':'department_id'}"/>
+<!--                        <filter string="Vehicle" domain="" context="{'group_by':'vehicle_id'}"/>-->
+                        <filter string="Partner" domain="" context="{'group_by':'partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_fleet_vehicle_reservation" model="ir.actions.act_window">
+            <field name="name">Vehicle Reservations</field>
+            <field name="res_model">fleet.vehicle.reservation</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help">Vehicle Reservations</field>
+        </record>
+
+        <menuitem id="menu_fleet_vehicle_reservation_main" name="Reservations" parent="base_fleet.menu_fleet_vehicle_reservation" groups="base.group_user" sequence="2"/>
+        <menuitem id="menu_fleet_vehicle_reservation_sub" name="Reservations" parent="menu_fleet_vehicle_reservation_main" 
+        action="action_fleet_vehicle_reservation" groups="base.group_user" sequence="1"/>
+            
+    </data>
+</odoo>

@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="fleet_vehicle_inherit_form_view" model="ir.ui.view">
+            <field name="name">Fleet Vehicle Inherit form</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='color']" position="after">
+                    <field name="vehicle_type_id" widget="selection"/>
+                    <field name="vehicle_sub_type_id" widget="selection"/>
+                </xpath>
+                <xpath expr="//sheet" position="inside">
+                    <notebook>
+                        <page name="bill_acc" string="Billing/Accounting">
+                            <group>
+                                <group name="vehicle_fees">
+                                    <field name="is_use_vehicle_fees"/>
+                                    <field name="is_use_vehicle_time_fees"/>
+                                </group>
+                            </group>
+                            <field name="vehicle_dest_cost_ids" attrs="{'invisible': [('is_use_vehicle_fees', '=', False)]}">
+                                <tree editable="bottom">
+                                    <field name="from_dist"/>
+                                    <field name="to_dist"/>
+                                    <field name="price_km"/>
+                                </tree>
+                            </field>
+                            <field name="vehicle_time_cost_ids" attrs="{'invisible': [('is_use_vehicle_time_fees', '=', False)]}">
+                                <tree editable="bottom">
+                                    <field name="from_hour"/>
+                                    <field name="to_hour"/>
+                                    <field name="price_hour"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="reservation_info" string="Reservation Info">
+                            <group>
+                                <group string='Reservation Info'>
+                                    <field name="is_reservable"/>
+                                    <field name="reserve_period" attrs="{'invisible': [('is_reservable', '=', False)], 'required': [('is_reservable', '=', True)]}" widget="radio"/>
+                                    <field name="available_from" widget="float_time" attrs="{'invisible': ['|',('is_reservable', '=', False),('reserve_period', '!=', 'some_time')], 'required': [('reserve_period', '=', 'some_time')]}"/>
+                                    <field name="available_to" widget="float_time" attrs="{'invisible': ['|',('is_reservable', '=', False),('reserve_period', '!=', 'some_time')], 'required': [('reserve_period', '=', 'some_time')]}"/>
+                                    <field name="not_available_from" widget="float_time" attrs="{'invisible': ['|',('is_reservable', '=', False),('reserve_period', '!=', 'not_avail')], 'required': [('reserve_period', '=', 'not_avail')]}"/>
+                                    <field name="not_available_to" widget="float_time" attrs="{'invisible': ['|',('is_reservable', '=', False),('reserve_period', '!=', 'not_avail')], 'required': [('reserve_period', '=', 'not_avail')]}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="vehicle_reserve_time" string="Vehicle Reserve Time Information">
+                            <group>
+                                <group>
+                                    <field name="vehicle_reserve_time"/>
+                                    <field name="during_hour_from" attrs="{'invisible': [('vehicle_reserve_time', '!=', 'each_hour_on_days')]}"/>
+                                    <field name="during_hour_to" attrs="{'invisible': [('vehicle_reserve_time', '!=', 'each_hour_on_days')]}"/>
+                                    <field name="during_per_hour_from" attrs="{'invisible': [('vehicle_reserve_time', '!=', 'day_per_hour_x')]}"/>
+                                    <field name="during_per_hour_to" attrs="{'invisible': [('vehicle_reserve_time', '!=', 'day_per_hour_x')]}"/>
+                                    <field name="allow_higher_pricing" attrs="{'invisible': [('vehicle_reserve_time', '!=', 'allow_higher_pricing')]}"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="fleet_vehicle_inherit_search_form_view" model="ir.ui.view">
+            <field name="name">Fleet Vehicle Inherit Serach form</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='alert_true']" position="after">
+                    <filter name="reservable" domain="[('is_reservable', '=', True)]" string="Researvable"/>
+                </xpath>
+                <xpath expr="//filter[@name='groupby_model']" position="after">
+                    <filter name="vehicle_type" context="{'group_by' : 'vehicle_type_id'}" string="Vehicle Type"/>
+                    <filter name="vehicle_sub_type" context="{'group_by' : 'vehicle_sub_type_id'}" string="Vehicle Sub Type"/>
+                </xpath>
+            </field>
+        </record>
+        
+
+    </data>
+</odoo>

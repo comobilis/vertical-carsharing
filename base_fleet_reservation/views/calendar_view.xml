@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="event_vehicle_reservation_form_view" model="ir.ui.view">
+            <field name="name">Calendar Event vehicle reserv form</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div[@class='oe_title']" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="act_show_invoices" string="Invoices" type="object" icon="fa-bars"></button>
+                    </div>
+                </xpath>
+                <xpath expr="//sheet" position="before">
+                    <header name="event_header">
+                        <button name="%(action_recieve_vehicle)d" string="Check In" class="oe_highlight" type="action" attrs="{'invisible': [('is_return', '!=', False)]}"/>
+                        <button name="%(action_return_vehicle)d" string="Return Vehicle" class="oe_highlight" type="action" attrs="{'invisible': [('is_return', '!=', False)]}"/>
+                    </header>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page name="reservation_info" string="Vehicle Reservation Details">
+                        <group name="reservation">
+                            <group name="vehicle">
+                                <field name="vehicle_reserved_employee_id" invisible="True"/>
+                                <field name="vehicle_type_id"/>
+                                <field name="vehicle_sub_type_id"/>
+                                <field name="vehicle_id"/>
+                                <field name="department_id"/>
+                            </group>
+                            <group name="vehicle_reserv">
+                                <field name="vehicle_reservation_id"/>
+                                <field name="reservation_schedule_id"/>
+                                <field name="deposit_charge_amount"/>
+                                <field name="state"/>
+                            </group>
+                            <group name="Other">
+                                <field name="is_ride_share"/>
+                                <field name="rides_msg" attrs="{'invisible': [('is_ride_share', '=', False)]}"/>
+                                <field name="reservation_service_type_id"/>
+                            </group>
+                            <group name="reserve_for_other">
+                                <field name="is_reserve_for_other"/>
+                                <field name="employee_present_status" attrs="{'invisible':[('is_reserve_for_other', '!=', True)]}"/>
+                                <field name="person_name" attrs="{'invisible':['|',('is_reserve_for_other', '!=', True),('employee_present_status', '!=', 'absent')], 'required':[('employee_present_status', '=', 'absent'),('is_reserve_for_other', '=', True)]}"/>
+                                <field name="person_phone" attrs="{'invisible':['|',('is_reserve_for_other', '!=', True),('employee_present_status', '!=', 'absent')],'required':[('employee_present_status', '=', 'absent'),('is_reserve_for_other', '=', True)]}"/>
+                            </group>
+                            <group name="vehicle_return" string="Recieve Info">
+                                <field name="check_in_datetime"/>
+                                <field name="recieve_employee_id"/>
+                            </group>
+                            <group name="vehicle_return" string="Return Info">
+                                <field name="is_return"/>
+                                <field name="return_date_time"/>
+                                <field name="return_emoployee_id"/>
+                                <field name="total_km"/>
+                                <field name="total_hour"/>
+                                <field name="extra_time_no_reservation"/>
+                                <field name="prolog_hours" widget="float_time"/>
+                                <field name="invoice_id" invisible="1"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="event_vehicle_reservation_search_view" model="ir.ui.view">
+            <field name="name">Calendar Event vehicle reserv search inherit</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="inside">
+                    <filter string="Reserved Vehicle" domain="[]" context="{'group_by':'vehicle_id'}"/>
+                </xpath>
+                <xpath expr="//field[last()]" position="after">
+                    <field name="vehicle_reservation_id"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

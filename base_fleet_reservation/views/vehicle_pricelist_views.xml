@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="vehicle_pricelist_form_view" model="ir.ui.view">
+            <field name="name">vehicle pricelist form</field>
+            <field name="model">vehicle.pricelist</field>
+            <field name="arch" type="xml">
+                <form name="vehicle_pricelist_form">
+                    <sheet>
+                        <div class="oe_title" name="h1_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group name="vehicle_pricelist">
+                            <group name="vechicle_pricelist_child">
+                                <field name="currency_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="pricelist_line" string="Pricelist">
+                                <field name="vehicle_pricelist_line_ids">
+                                    <tree name="pricelist_line_tree" editable="bottom">
+                                        <field name="pricelist_type"/>
+                                        <field name="day" attrs="{'required':[('pricelist_type','in',['days','both'])]}"/>
+                                        <field name="start_time" attrs="{'required':[('pricelist_type','in',['hours','both'])]}" widget="float_time"/>
+                                        <field name="end_time" attrs="{'required':[('pricelist_type','in',['hours','both'])]}" widget="float_time"/>
+                                        <field name="start_date"/>
+                                        <field name="end_date"/>
+                                        <field name="percentage"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="vehicle_pricelist_tree_view" model="ir.ui.view">
+            <field name="name">Vehicle Pricelist tree</field>
+            <field name="model">vehicle.pricelist</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="currency_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_vehicle_pricelist" model="ir.actions.act_window">
+            <field name="name">Vehicle Pricelist</field>
+            <field name="res_model">vehicle.pricelist</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help">Vehicle Pricelist</field>
+        </record>
+        
+        <menuitem id="menu_fleet_vehicle_pricelist" name="Pricelists" parent="base_fleet.menu_fleet_vehicle_reservation_config" action="action_vehicle_pricelist"/>
+    </data>
+</odoo>

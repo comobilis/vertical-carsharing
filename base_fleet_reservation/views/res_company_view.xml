@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="res_company_inherit_form_view" model="ir.ui.view">
+            <field name="name">Company Inherit form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='billing_acc_info']/group[@name='billing/acc']/group[@name='yearly_unit_fee']" position="after">
+                    <group name="advance_payment">
+                        <field name="coordinator_user_id"/>
+                        <field name="advance_payment"/>
+                        <field name="advance_payment_option" attrs="{'invisible':[('advance_payment', '=', False)],'required':[('advance_payment','=',True)]}"/>
+                    </group>
+                    <field name="advance_payment_level_ids" attrs="{'invisible':['|',('advance_payment', '=', False),('advance_payment_option', '!=', 'levels')]}">
+                        <tree editable="bottom">
+                            <field name="payment_level_id"/>
+                            <field name="amount"/>
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//field[@name='max_vehicle_perunit']" position="after">
+                    <field name="reserved_the_day_of_use"/>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        
+        <!--Email template -->
+        <record id="email_template_reservation_confirm" model="mail.template">
+            <field name="name">Reservation Confirmation - Send by Email</field>
+            <field name="email_from">${(object.partner_id.email)}</field>
+            <field name="subject">${object.name} ${'confirm' in ctx and ctx['confirm']} (Ref ${object.name or 'n/a' })</field>
+            <field name="email_to">${object.hou_user_id.email}</field>
+            <field name="model_id" ref="base_fleet_reservation.model_fleet_vehicle_reservation"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+                <p>Dear ${object.hou_user_id.name},
+
+                <p>
+                Here is Reservation of <strong>${object.name}</strong> for <strong>${object.reserving_employee_id.name}</strong>
+                Please Give Approval.
+                from ${object.company_id.name}.
+                </p>
+
+                    <br/><br/>
+                <p>You can reply to this email if you have any questions.</p>
+                <p>Thank you,</p>
+
+                <p style="color:#eeeeee;">
+                % if object.reserving_employee_id.user_id and object.reserving_employee_id.user_id.signature:
+                    ${object.reserving_employee_id.user_id.signature | safe}
+                % endif
+                </p>
+                ]]>
+            </field>
+        </record>
+        
+        <record id="email_template_reservation_hou_approv" model="mail.template">
+            <field name="name">Reservation Head of Unit  Approved - Send by Email</field>
+            <field name="email_from">${(object.hou_user_id.email)}</field>
+            <field name="subject">${object.name} ${'approve_hod' in ctx and ctx['approve_hod']} (Ref ${object.name or 'n/a' })</field>
+            <field name="email_to">${object.coordinator_user_id.email}</field>
+            <field name="model_id" ref="base_fleet_reservation.model_fleet_vehicle_reservation"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+                <p>Dear ${object.coordinator_user_id.name},
+
+                <p>
+                Here is Reservation of <strong>${object.name}</strong> for <strong>${object.reserving_employee_id.name}</strong>
+                Please Give Coordinator Approval.
+                from ${object.company_id.name}.
+                </p>
+
+                    <br/><br/>
+                <p>You can reply to this email if you have any questions.</p>
+                <p>Thank you,</p>
+
+                <p style="color:#eeeeee;">
+                % if object.hou_user_id and object.hou_user_id.signature:
+                    ${object.hou_user_id.signature | safe}
+                % endif
+                </p>
+                ]]>
+            </field>
+        </record>
+        
+        <record id="email_template_reservation_coordinator_approv" model="mail.template">
+            <field name="name">Reservation Coordinator  Approved - Send by Email</field>
+            <field name="email_from">${(object.coordinator_user_id.email)}</field>
+            <field name="subject">${object.name} ${'approve_offi' in ctx and ctx['approve_offi']} (Ref ${object.name or 'n/a' })</field>
+            <field name="email_to">${object.manager_user_id.email}</field>
+            <field name="model_id" ref="base_fleet_reservation.model_fleet_vehicle_reservation"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+                <p>Dear ${object.manager_user_id.name},
+
+                <p>
+                Here is Reservation of <strong>${object.name}</strong> for <strong>${object.reserving_employee_id.name}</strong>
+                Please Give Manager Approval.
+                from ${object.company_id.name}.
+                </p>
+
+                    <br/><br/>
+                <p>You can reply to this email if you have any questions.</p>
+                <p>Thank you,</p>
+
+                <p style="color:#eeeeee;">
+                % if object.coordinator_user_id and object.coordinator_user_id.signature:
+                    ${object.coordinator_user_id.signature | safe}
+                % endif
+                </p>
+                ]]>
+            </field>
+        </record>
+
+        <record id="email_template_reservation_manager_approv" model="mail.template">
+            <field name="name">Reservation Manager  Approved - Send by Email</field>
+            <field name="email_from">${(object.manager_user_id.email)}</field>
+            <field name="subject">${object.name} ${'reserved' in ctx and ctx['reserved']} (Ref ${object.name or 'n/a' })</field>
+            <field name="email_to">${object.reserving_employee_id.user_id.email}</field>
+            <field name="model_id" ref="base_fleet_reservation.model_fleet_vehicle_reservation"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+                <p>Dear ${object.reserving_employee_id.name},
+
+                <p>
+                Here is Your Reservation of <strong>${object.name}</strong> has been Reserved You can Take your reserved Vehicle
+                from ${object.company_id.name}.
+                </p>
+
+                    <br/><br/>
+                <p>You can reply to this email if you have any questions.</p>
+                <p>Thank you,</p>
+
+                <p style="color:#eeeeee;">
+                % if object.manager_user_id and object.manager_user_id.signature:
+                    ${object.manager_user_id.signature | safe}
+                % endif
+                </p>
+                ]]>
+            </field>
+        </record>
+        
+    </data>
+</odoo>
+ 
+

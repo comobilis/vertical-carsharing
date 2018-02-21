@@ -1,0 +1,4 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_membership_deposit_employee,membership_deposit_employee,model_membership_deposit,base.group_user,1,0,0,0
+access_membership_deposit_account_billibng,membership_deposit_accountant,model_membership_deposit,account.group_account_invoice,1,1,1,1
+access_membership_deposit_reserv_manager,membership_deposit_reservation_manager,model_membership_deposit,base_employee.reservation_manager_group,1,0,0,0

@@ -1,0 +1,5 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_employee_profile_employee,hr_employee_profile_employee,hr_contract.model_hr_employee,base.group_user,1,1,0,0
+access_hr_employee_profile_hou,hr_employee_profile_hou,hr_contract.model_hr_employee,base_employee.head_of_unit_group,1,1,0,0
+access_hr_employee_profile_ex_provider,hr_employee_profile_ex_provider,hr_contract.model_hr_employee,base_employee.external_service_provider_group,1,1,0,0
+access_hr_employee_profile_coordinator,hr_employee_profile_coordinator,hr_contract.model_hr_employee,base_employee.coordinator_group,1,1,1,1

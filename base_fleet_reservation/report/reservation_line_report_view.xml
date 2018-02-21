@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="vehicle_reservation_schedule_report_tree_view" model="ir.ui.view">
+            <field name="name">Vehicle Reservation Schedule tree</field>
+            <field name="model">vehicle.reservation.schedule</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="fleet_vehicle_reservation_id"/>
+                    <field name="vehicle_type_id"/>
+                    <field name="vehicle_sub_type_id"/>
+                    <field name="billing_type"/>
+                    <field name="vehicle_id"/>
+                    <field name="note"/>
+                    <field name="start_date_time"/>
+                    <field name="end_date_time"/>
+                    <field name="is_return"/>
+                    <field name="total_km"/>
+                    <field name="total_hour"/>
+                    <field name="prolog_hours" widget="float_time"/>
+                    <field name="invoice_amount_to_pay"/>
+                </tree>
+            </field>
+        </record>
+    
+        <record id="vehicle_reservation_schedule_report_graph_view" model="ir.ui.view">
+            <field name="name">vehicle.reservationschedule.graph</field>
+            <field name="model">vehicle.reservation.schedule</field>
+            <field name="arch" type="xml">
+                <graph string="Project Tasks">
+                    <field name="reservation_date" interval="month"/>
+                </graph>
+            </field>
+        </record>
+        
+        <record id="vehicle_reservation_schedule_report_pivot_view" model="ir.ui.view">
+            <field name="name">vehicle.reservation.schedule.pivot</field>
+            <field name="model">vehicle.reservation.schedule</field>
+            <field name="arch" type="xml">
+                <pivot string="Project Tasks">
+                    <field name="invoice_partner_id" type="row"/>
+                    <field name="fleet_vehicle_reservation_id" type="row"/>
+                    <field name="start_date_time" type="col"/>
+                    <field name="vehicle_id" type="col"/>
+                    <field name="total_km" type="measure"/>
+                    <field name="total_hour" type="measure"/>
+                    <field name="invoice_amount_to_pay" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+        
+        <record id="vehicle_reservation_schedule_report_calendar_view" model="ir.ui.view">
+            <field name="name">Vehicle Reservation Schedule Calendar</field>
+            <field name="model">vehicle.reservation.schedule</field>
+            <field name="arch" type="xml">
+                <calendar string="Vehicle Reservations" date_start="start_date_time" date_stop="end_date_time" color="vehicle_id">
+                    <field name="fleet_vehicle_reservation_id"/>
+                    <field name="vehicle_id"/>
+                    <field name="start_date_time"/>
+                    <field name="end_date_time"/>
+                </calendar>
+            </field>
+        </record>
+        
+        
+        <record id="action_vehicle_reservation_schedule_report" model="ir.actions.act_window">
+            <field name="name">Vehicle Reservations</field>
+            <field name="res_model">vehicle.reservation.schedule</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,calendar,pivot,graph</field>
+        </record>
+        
+        <menuitem id="menu_vehicle_reservation_schedule_report" name="Reporting" parent="base_fleet.menu_fleet_vehicle_reservation"/>
+        <menuitem id="menu_reservation_schedule_line_report" name="Vehicle Reservations" parent="menu_vehicle_reservation_schedule_report" action="action_vehicle_reservation_schedule_report"/>
+    </data>
+</odoo>
