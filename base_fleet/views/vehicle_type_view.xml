@@ -5,11 +5,6 @@
         <record id="fleet_vehicle_type_form_view" model="ir.ui.view">
             <field name="name">Fleet Vehicle Type form</field>
             <field name="model">fleet.vehicle.type</field>
-            <field name="help" type="html">
-               <p class="oe_view_nocontent_create">
-                   Create a Vehicle Type, the first step of a new Vehicle Type.
-               </p>
-           </field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>

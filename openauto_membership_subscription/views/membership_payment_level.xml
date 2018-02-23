@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="membership_payment_level_form_view" model="ir.ui.view">
+            <field name="name">Membership Payment Level form</field>
+            <field name="model">membership.payment.level</field>
+            <field name="arch" type="xml">
+                <form name="vehicle_reservation">
+                    <sheet>
+                        <group name="vehicle_reserv_schedule">
+                            <group name="reservation_schedule_first">
+                                <field name="name"/>
+                                <field name="code"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <record id="membership_payment_level_tree_view" model="ir.ui.view">
+            <field name="name">Membership Payment Level tree</field>
+            <field name="model">membership.payment.level</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_membership_payment_level" model="ir.actions.act_window">
+            <field name="name">Membership Payment Levels</field>
+            <field name="res_model">membership.payment.level</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help">Membership Payment Levels</field>
+        </record>
+        
+        <menuitem id="menu_membership_payment_level" name="Membership Payment Levels" parent="base_fleet.menu_fleet_vehicle_reservation_config" 
+        action="action_membership_payment_level"/>
+    </data>
+</odoo>

@@ -12,7 +12,7 @@
                         <button name="action_confirm" class="oe_highlight" string="Confirm" type="object" states="draft" groups="base.group_user"/>
                         <button name="action_approve_hod" class="oe_highlight" string="Head of Unit Approve" type="object" states="confirm" groups="base_employee.head_of_unit_group"/>
                         <button name="action_approve_offi" class="oe_highlight" string="Coordinator Approve" type="object" states="approve_hod" groups="base_employee.coordinator_group"/>
-                        <button name="action_reserve" class="oe_highlight" string="Manager Approve and Reserve" type="object" states="approve_offi" groups="base_employee.reservation_manager_group"/>
+                        <button name="action_reserve" class="oe_highlight" string="Manager Approve and Reserve" type="object" states="approve_offi" groups="base_employee.coordinator_group"/>
 <!--                        <button name="action_create_invoice" class="oe_highlight" string="Create Invoice" type="object" states="reserved" groups="base_employee.coordinator_group,base_employee.reservation_manager_group" attrs="{'invisible':[('is_cancel_invoice','=',False)]}"/>-->
                         <button name="action_reject" string="Reject" type="object" states="approve_hod,approve_offi"/>
                         <button name="action_cancle" string="Cancel" type="object" states="draft,confirm"/>
@@ -62,7 +62,7 @@
                         </group>
                         <notebook>
                             <page name="reservation_schedule" string="Reservation Schedule">
-                                <field name="reservation_schedule_ids" attrs="{'readonly': [('state','in',['reserved', 'invoice', 'paid'])]}">
+                                <field name="reservation_schedule_ids" attrs="{'readonly': [('state','in',['reserved', 'invoice', 'paid'])]}" context="{'default_employee_id':reserving_employee_id}">
                                     <tree editable="bottom">
                                         <field name="vehicle_type_id"/>
                                         <field name="vehicle_sub_type_id"/>

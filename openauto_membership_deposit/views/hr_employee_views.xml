@@ -5,12 +5,12 @@
         <record id="hr_employee_deposit_form_view" model="ir.ui.view">
             <field name="name">Hr Employee vehicle deposit form</field>
             <field name="model">hr.employee</field>
-            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="inherit_id" ref="base_employee.hr_base_employee_inherit_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//notebook/page/group/group[@name='advance_payment_level']" position="before">
-                    <group>
-                        <field name="rfid_key"/>
-                        <field name="rfid_key_comp"/>
+                <xpath expr="//notebook/page[@name='vehicle_reservation']/group[@name='main_grp']" position="inside">
+                    <group name="payment_level_grp">
+<!--                        <field name="rfid_key" groups="base_employee.coordinator_group"/>-->
+<!--                        <field name="rfid_key_comp"/>-->
                         <field name="payment_level_id"/>
                     </group>
                 </xpath>

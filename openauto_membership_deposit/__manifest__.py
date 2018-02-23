@@ -23,7 +23,7 @@ Deposit Amount
                 'base_company',
                 'base_employee',
                 'openauto_membership_subscription',
-#                'base_fleet_reservation',
+#               'base_fleet_reservation',
     ],
     'data':[
             'security/ir.model.access.csv',

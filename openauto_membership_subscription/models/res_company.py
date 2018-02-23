@@ -8,9 +8,9 @@ from odoo import models, fields
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-#    advance_payment = fields.Boolean(
-#        string="Do Advance Payment",
-#    )
+    advance_payment = fields.Boolean(
+        string="Do Advance Payment",
+    )
     advance_payment_option = fields.Selection(
         selection=[('period_amount', 'Is it billed monthly or yearly'),
                    ('entity_amount', 'Is it billed per employee or Unit'),

@@ -52,10 +52,59 @@
             </field>
         </record>
 
+        <record id="hr_expense_actions_all_unsubmitted" model="ir.actions.act_window">
+            <field name="name">HOU Expenses to Submit</field>
+            <field name="res_model">hr.expense</field>
+            <field name="view_mode">tree,kanban,form,graph,pivot</field>
+            <field name="search_view_id" ref="hr_expense.view_hr_expense_filter"/>
+<!--            <field name="domain">[('employee_id.user_id', '=', uid)]</field>-->
+            <field name="context">{'search_default_to_report': 1}</field>
+            <field name="help" type="html">
+              <p>
+                The steps to process expenses are:
+                <ol>
+                    <li>You record expenses,</li>
+                    <li>Periodically, you submit expenses report to your manager,</li>
+                    <li>Once approved, your expense report, goes to the accounting,</li>
+                    <li>The accountant validates entries and reimburse you.</li>
+                </ol>
+              </p>
+            </field>
+        </record>
+        
+        <record id="action_hr_expense_sheet_all_refused" model="ir.actions.act_window">
+            <field name="name">My Refused Reports</field>
+            <field name="res_model">hr.expense.sheet</field>
+            <field name="view_mode">tree,kanban,form,graph,pivot</field>
+            <field name="search_view_id" ref="hr_expense.view_hr_expense_sheet_filter"/>
+            <field name="domain">[('state', '=', 'cancel')]</field>
+            <field name="context">{'create': False}</field>
+            <field name="help" type="html">
+              <p>No refused reports to display.</p>
+            </field>
+        </record>
+        
+        <record id="action_hr_expense_sheet_all" model="ir.actions.act_window">
+            <field name="name">My Reports</field>
+            <field name="res_model">hr.expense.sheet</field>
+            <field name="view_mode">tree,kanban,form,pivot,graph</field>
+            <field name="search_view_id" ref="hr_expense.view_hr_expense_sheet_filter"/>
+            <field name="domain">[('state', '!=', 'cancel')]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click here to create a new expense report.
+              </p><p>
+                Once you have created your expense, submit it to your manager who will validate it.
+              </p>
+            </field>
+        </record>
+        
+
         <menuitem id="menu_vehicle_expense_my_expenses" name="Vehicle Expenses" sequence="12" parent="base_fleet.menu_fleet_vehicle_reservation" groups="base.group_user"/>
-        <menuitem id="menu_vehicle_expense_my_expenses_to_submit" name="Expenses to Submit" sequence="1" parent="menu_vehicle_expense_my_expenses" action="hr_expense.hr_expense_actions_my_unsubmitted"/>
-        <menuitem id="menu_vehicle_expense_sheet_my_reports_refused" name="Refused Reports" sequence="2" parent="menu_vehicle_expense_my_expenses" action="hr_expense.action_hr_expense_sheet_my_refused"/>
-        <menuitem id="menu_vehicle_expense_sheet_my_reports" name="Expense Reports" sequence="3" parent="menu_vehicle_expense_my_expenses" action="hr_expense.action_hr_expense_sheet_my_all"/>
+        <menuitem id="menu_vehicle_expense_my_expenses_coord_submit" name="Expenses to Submit" sequence="1" parent="menu_vehicle_expense_my_expenses" action="openauto_expense.hr_expense_actions_all_unsubmitted"/>
+        <menuitem id="menu_vehicle_expense_sheet_my_reports_refused" name="Refused Reports" sequence="2" parent="menu_vehicle_expense_my_expenses" action="openauto_expense.action_hr_expense_sheet_all_refused"/>
+        <menuitem id="menu_vehicle_expense_sheet_my_reports" name="Expense Reports" sequence="3" parent="menu_vehicle_expense_my_expenses" action="openauto_expense.action_hr_expense_sheet_all"/>
 
     </data>
 </odoo>

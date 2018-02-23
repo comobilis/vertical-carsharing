@@ -27,6 +27,9 @@ Sales
             'views/membership_renew_view.xml',
             'views/analytic_view.xml',
             'views/sale_view.xml',
+            'views/membership_payment_level.xml',
+#            'views/advance_payment_levet_view.xml',
+            'views/res_company_view.xml',
             'reports/contract_recurring_invoice_analytic_report.xml'
     ],
     'installable' : True,

@@ -15,9 +15,14 @@
     """,
     'author': "Openauto",
     'website': "http://www.openauto.ch",
-    'depends': ['hr'],
+    'depends': [
+                'hr',
+                'hr_expense',
+                'fleet',
+    ],
     'data': [
         'security/hr_employee_group_view.xml',
+        'views/hr_employee_view.xml',
     ],
     'installable': True,
     'application': False,

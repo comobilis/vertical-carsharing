@@ -20,6 +20,7 @@
     'data': [
         #'security/ir.model.access.csv',
         'views/res_company_views.xml',
+#        'views/membership_payment_level.xml',
     ],
     'installable': True,
     'application': False,

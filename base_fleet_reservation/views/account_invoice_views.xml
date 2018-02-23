@@ -10,15 +10,20 @@
                 <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="after">
                     <field name="vehicle_id"/>
                 </xpath>
-                <xpath expr="//field[@name='user_id']" position="after">
-                     <field name="reservation_employee_id"/>
-                     <field name="department_id"/>
-                </xpath>
+<!--                <xpath expr="//field[@name='user_id']" position="after">-->
+<!--                     -->
+<!--                </xpath>-->
                 <xpath expr="//notebook/page[last()]" position="after">
                     <page name="vehicle_reservation" string="Vehicle Reservation Informations">
                         <group name="vehicle_res">
-                            <field name="vehicle_reservation_id"/>
-                            <field name="is_reservation_invoice"/>
+                            <group name="grp_employee">
+                                <field name="reservation_employee_id"/>
+                                <field name="department_id"/>
+                            </group>
+                            <group name="grp_reservation">
+                                <field name="vehicle_reservation_id"/>
+                                <field name="is_reservation_invoice"/>
+                            </group>
                         </group>
                     </page>
                 </xpath>

@@ -5,7 +5,7 @@
             <field name="name">Vehicle Reservation Schedule tree</field>
             <field name="model">vehicle.reservation.schedule</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree create="false" edit="false">
                     <field name="fleet_vehicle_reservation_id"/>
                     <field name="vehicle_type_id"/>
                     <field name="vehicle_sub_type_id"/>

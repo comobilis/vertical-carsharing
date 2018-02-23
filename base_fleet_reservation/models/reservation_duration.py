@@ -258,5 +258,5 @@ reserved on your selected date."))
                     else:
                         max_hr =  max([cost.to_hour for cost in time_cost_ids])
                         cost_id = time_cost_ids.search([('to_hour','=',max_hr)])
-                        amount = rec.company_id.currency_id.compute(cost_id.price_hour * total_hour, rec.fleet_vehicle_reservation_id.currency_id)
+                        amount = rec.company_id.currency_id.compute(cost_id.price_hour * rec.total_hour, rec.fleet_vehicle_reservation_id.currency_id)
             rec.invoice_amount_to_pay = amount

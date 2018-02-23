@@ -7,38 +7,38 @@
             <field name="model">fleet.vehicle</field>
             <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//div[@class='oe_button_box']" position="inside">
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
                     <button name="act_show_reservations" type="object" class="oe_stat_button" icon="fa-bars" string="Reservation Schedule"/>
                     <button name="act_show_invoices" type="object" class="oe_stat_button" icon="fa-pencil-square-o" string="Invoices"/>
                     <button name="act_show_events" type="object" class="oe_stat_button" icon="fa-bars" string="Events"/>
                     <button name="act_show_expense" type="object" class="oe_stat_button" icon="fa-money" string="Expense"/>
                     <button name="act_show_analityc_acc" type="object" class="oe_stat_button" icon="fa-book" string="Analytic Account"/>
                 </xpath>
-                <xpath expr="//group[@name='vehicle_fees']" position="after">
-                    <group name="car_taken">
-                        <field name="car_taken_minute" widget="float_time"/>
-                        <field name="billing_multiplier"/>
-                    </group>
-                </xpath>
-                <xpath expr="//field[@name='vehicle_reserve_time']" position="before">
-                    <field name="is_allowed_friend_family"/>
-                </xpath>
-                <xpath expr="//field[@name='vehicle_sub_type_id']" position="after">
-                    <field name="product_id"/>
-                    <field name="product_hour_id"/>
-                </xpath>
-                <xpath expr="//notebook/page[last()]" position="after">
-                    <page name="account"  string="Account">
-                        <group name="analytic_group">
-                            <group>
-                                <field name="analytic_account_id"/>
-                            </group>
-                            <group>
-                                <field name="analytic_tag_ids" widget="many2many_tags"/>
-                            </group>
-                        </group>
-                    </page>
-                </xpath>
+<!--                <xpath expr="//group[@name='vehicle_fees']" position="after">-->
+<!--                    <group name="car_taken">-->
+<!--                        <field name="car_taken_minute" widget="float_time"/>-->
+<!--                        <field name="billing_multiplier"/>-->
+<!--                    </group>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='vehicle_reserve_time']" position="before">-->
+<!--                    <field name="is_allowed_friend_family"/>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='vehicle_sub_type_id']" position="after">-->
+<!--                    <field name="product_id"/>-->
+<!--                    <field name="product_hour_id"/>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//notebook/page[last()]" position="after">-->
+<!--                    <page name="account"  string="Account">-->
+<!--                        <group name="analytic_group">-->
+<!--                            <group>-->
+<!--                                <field name="analytic_account_id"/>-->
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                                <field name="analytic_tag_ids" widget="many2many_tags"/>-->
+<!--                            </group>-->
+<!--                        </group>-->
+<!--                    </page>-->
+<!--                </xpath>-->
             </field>
         </record>
         

@@ -19,26 +19,27 @@ class HrEmployee(models.Model):
 #        compute="_compute_due_date",
 #        string="Due Date",
 #    )
-    advance_payment_level_id = fields.Many2one(
-        'advance.payment.level',
-        string="Payment Level"
-    )
+#    advance_payment_level_id = fields.Many2one(
+#        'advance.payment.level',
+#        string="Payment Level"
+#    )
 
-    @api.model
-    def create(self, vals):
-        result = super(HrEmployee, self).create(vals)
-        result.user_id.department_id = result.department_id.id
-        result.user_id.partner_id.department_id = result.department_id.id
-        return result
+#    @api.model
+#    def create(self, vals):
+#        result = super(HrEmployee, self).create(vals)
+#        if result.user_id and result.user_id.partner_id:
+#            result.user_id.department_id = result.department_id.id
+#            result.user_id.partner_id.department_id = result.department_id.id
+#        return result
     
-    @api.multi
-    def write(self, vals):
-        result = super(HrEmployee, self).write(vals)
-        for rec in self:
-            if vals.get('department_id'):
-                rec.user_id.department_id = rec.department_id.id
-                rec.user_id.partner_id.department_id = rec.department_id.id
-        return result
+#    @api.multi
+#    def write(self, vals):
+#        result = super(HrEmployee, self).write(vals)
+#        for rec in self:
+#            if vals.get('department_id'):
+#                rec.user_id.department_id = rec.department_id.id
+#                rec.user_id.partner_id.department_id = rec.department_id.id
+#        return result
 
 #    def _compute_due_date(self):
 #        for rec in self:

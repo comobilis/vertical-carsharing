@@ -9,46 +9,46 @@ from odoo import models, fields, api, _
 class FleetVehicle(models.Model):
     _inherit = "fleet.vehicle"
 
-    car_taken_minute = fields.Float(
-        string='Grace Checkin.period',
-        copy=True,
-        help="How many minutes can a car be taken early?",
-    )
-    is_allowed_friend_family = fields.Boolean(
-        string="Allow Friend Family",
-    )
-    product_id = fields.Many2one(
-        'product.product',
-        string="Product For KM",
-    )
-    product_hour_id = fields.Many2one(
-        'product.product',
-        string="Product For Hour",
-    )
-    billing_multiplier = fields.Float(
-        string="Billing Mutiplier",
-    )
-    analytic_account_id = fields.Many2one(
-        'account.analytic.account',
-        string="Analytic Account",
-    )
-    analytic_tag_ids = fields.Many2many(
-        'account.analytic.tag',
-        string="Analytic Tags",
-    )
+#    car_taken_minute = fields.Float(
+#        string='Grace Checkin.period',
+#        copy=True,
+#        help="How many minutes can a car be taken early?",
+#    )
+#    is_allowed_friend_family = fields.Boolean(
+#        string="Allow Friend Family",
+#    )
+#    product_id = fields.Many2one(
+#        'product.product',
+#        string="Product For KM",
+#    )
+#    product_hour_id = fields.Many2one(
+#        'product.product',
+#        string="Product For Hour",
+#    )
+#    billing_multiplier = fields.Float(
+#        string="Billing Mutiplier",
+#    )
+#    analytic_account_id = fields.Many2one(
+#        'account.analytic.account',
+#        string="Analytic Account",
+#    )
+#    analytic_tag_ids = fields.Many2many(
+#        'account.analytic.tag',
+#        string="Analytic Tags",
+#    )
     
-    @api.model
-    def create(self, vals):
-        analytic_account_obj = self.env['account.analytic.account']
-        result = super(FleetVehicle, self).create(vals)
-        model = self.env['fleet.vehicle.model'].browse(vals.get('model_id'))
-        analytic_account_vals = {
-            'name': model.name +" - "+vals.get('license_plate'),
-            'company_id': self.env.user.company_id.id,
-            'tag_ids': [(6,0,result.analytic_tag_ids.ids)],
-        }
-        result.analytic_account_id = analytic_account_obj.create(analytic_account_vals)
-        return result
+#    @api.model
+#    def create(self, vals):
+#        analytic_account_obj = self.env['account.analytic.account']
+#        result = super(FleetVehicle, self).create(vals)
+#        model = self.env['fleet.vehicle.model'].browse(vals.get('model_id'))
+#        analytic_account_vals = {
+#            'name': model.name +" - "+vals.get('license_plate'),
+#            'company_id': self.env.user.company_id.id,
+#            'tag_ids': [(6,0,result.analytic_tag_ids.ids)],
+#        }
+#        result.analytic_account_id = analytic_account_obj.sudo().create(analytic_account_vals)
+#        return result
 
     @api.multi
     def act_show_reservations(self):

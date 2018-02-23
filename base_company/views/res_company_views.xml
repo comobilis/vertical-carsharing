@@ -21,6 +21,7 @@
                             <group name="yearly_unit_fee">
                                 <field name="yearly_unit_fee"/>
                                 <field name="yearly_unit_fee_amt" attrs="{'invisible':[('yearly_unit_fee', '=', False)],'required':[('yearly_unit_fee','=',True)]}"/>
+                                <field name="coordinator_user_id"/>
                             </group>
 <!--                            <group name="advance_payment">-->
 <!--                                <field name="advance_payment"/>-->
@@ -39,6 +40,7 @@
                         <group name="vehicle_reservation">
                             <group>
                                 <field name="max_vehicle_perunit"/>
+                                <field name="reserved_the_day_of_use"/>
 <!--                                <field name="is_reservation_block"/>-->
                                 <field name="reserve_block_days"/>
                             </group>

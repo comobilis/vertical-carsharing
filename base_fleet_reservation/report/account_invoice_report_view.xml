@@ -15,12 +15,12 @@
                 </div>
             </div>
         </xpath>
-<!--        <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[@class='text-right']" position="before">-->
-<!--            <th>Vehicle</th>-->
-<!--        </xpath>-->
-<!--        <xpath expr="//table[@name='invoice_line_table']/tbody/tr/td" position="before">-->
-<!--            <td><span t-field="l.vehicle_id.name"/></td>-->
-<!--        </xpath>-->
+        <xpath expr="//table[@name='invoice_line_table']/thead/tr/th" position="before">
+            <th>Vehicle</th>
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']/tbody/tr/td" position="before">
+            <td><span t-field="l.vehicle_id.name"/></td>
+        </xpath>
     </template>
         
 </data>

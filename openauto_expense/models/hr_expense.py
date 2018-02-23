@@ -46,5 +46,4 @@ class HrExpenses(models.Model):
             if amount < rec.company_id.reimbursement_of_expenses:
                 raise ValidationError("Total Expense is less then Company Reimbursement Amount Min")
         return super(HrExpenses, self).submit_expenses()
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

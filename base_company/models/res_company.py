@@ -27,15 +27,15 @@ class ResCompany(models.Model):
     yearly_unit_fee_amt = fields.Float(
         string="Yearly Fee Amount Per Unit",
     )
-    advance_payment = fields.Boolean(
-        string="Do Advance Payment",
-    )
-    advance_payment_option = fields.Selection(
-        selection=[('period_amount', 'Is it billed monthly or yearly'),
-                   ('entity_amount', 'Is it billed per employee or Unit'),
-                   ('levels', 'Different Levels')],
-        string="Advance Payment Option",
-    )
+#    advance_payment = fields.Boolean(
+#        string="Do Advance Payment",
+#    )
+#    advance_payment_option = fields.Selection(
+#        selection=[('period_amount', 'Is it billed monthly or yearly'),
+#                   ('entity_amount', 'Is it billed per employee or Unit'),
+#                   ('levels', 'Different Levels')],
+#        string="Advance Payment Option",
+#    )
 #    advance_payment_level_ids = fields.One2many(
 #        'advance.payment.level',
 #        'company_id',
@@ -101,6 +101,14 @@ class ResCompany(models.Model):
     )
     minimum_billing_reserve_time = fields.Float(
         string="Minimum billing for the Reserved Time"
+    )
+    
+    coordinator_user_id = fields.Many2one(
+        'res.users',
+        string="Coordinator",
+    )
+    reserved_the_day_of_use = fields.Integer(
+        string="Reserved the Day of use (Last Minute)",
     )
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

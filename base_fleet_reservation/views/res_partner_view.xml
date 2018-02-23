@@ -7,6 +7,9 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                    <button class="oe_stat_button" name="action_vehicle_reservation" string="Vehicle Reservations" type="object" icon="fa-bars"/>
+                </xpath>
                 <xpath expr="//field[@name='function']" position="after">
                     <field name="department_id"/>
                 </xpath>

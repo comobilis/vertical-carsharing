@@ -30,22 +30,98 @@
             <field name="domain_force">[('user_id', '=', user.id)]</field>
             <field eval="[(4,ref('base_employee.external_service_provider_group'))]" name="groups"/>
         </record>
-<!--        PROFILE RR-->        
+<!--        PROFILE RR-->
         
         
-<!--        <record id="reservation_hod_rule" model="ir.rule">-->
-<!--            <field ref="model_fleet_vehicle_reservation" name="model_id"/>-->
-<!--            <field name="name">Reservation HOD</field>-->
-<!--            <field name="domain_force">[(1,'=',1)]</field>-->
-<!--            <field eval="[(4,ref('base_employee.head_of_unit_group'))]" name="groups"/>-->
-<!--        </record>-->
+        <record id="vehicle_reservation_employee_rule" model="ir.rule">
+            <field ref="base_fleet_reservation.model_fleet_vehicle_reservation" name="model_id"/>
+            <field name="name">Vehicle Reservation Employee</field>
+            <field name="domain_force">[('reserving_employee_id.user_id', '=', user.id)]</field>
+            <field eval="[(4,ref('base.group_user'))]" name="groups"/>
+        </record>
+        
+        <record id="vehicle_reservation_schedule_employee_rule" model="ir.rule">
+            <field ref="base_fleet_reservation.model_vehicle_reservation_schedule" name="model_id"/>
+            <field name="name">Vehicle Reservation Schedule Employee</field>
+            <field name="domain_force">['|',('employee_id.user_id', '=', user.id),('employee_id', '=', False)]</field>
+            <field eval="[(4,ref('base.group_user'))]" name="groups"/>
+        </record>
 
-<!--        <record id="reservation_manager_rule" model="ir.rule">-->
-<!--            <field ref="model_fleet_vehicle_reservation" name="model_id"/>-->
-<!--            <field name="name">Reservation Manager</field>-->
-<!--            <field name="domain_force">[(1,'=',1)]</field>-->
-<!--            <field eval="[(4,ref('base_employee.reservation_manager_group'))]" name="groups"/>-->
-<!--        </record>-->
+        <record id="vehicle_reservation_hou_rule" model="ir.rule">
+            <field ref="base_fleet_reservation.model_fleet_vehicle_reservation" name="model_id"/>
+            <field name="name">Vehicle Reservation HOU</field>
+            <field name="domain_force">[('department_id', '=', user.department_id.id)]</field>
+            <field eval="[(4,ref('base_employee.head_of_unit_group'))]" name="groups"/>
+        </record>
+
+        <record id="vehicle_reservation_schedule_hou_rule" model="ir.rule">
+            <field ref="base_fleet_reservation.model_vehicle_reservation_schedule" name="model_id"/>
+            <field name="name">Vehicle Reservation Schedule HOU</field>
+            <field name="domain_force">['|',('department_id', '=', user.department_id.id),('department_id','=',False)]</field>
+            <field eval="[(4,ref('base_employee.head_of_unit_group'))]" name="groups"/>
+        </record>
+        
+        <record id="vehicle_reservation_coord_rule" model="ir.rule">
+            <field ref="base_fleet_reservation.model_fleet_vehicle_reservation" name="model_id"/>
+            <field name="name">Vehicle Reservation Coordinator</field>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field eval="[(4,ref('base_employee.coordinator_group'))]" name="groups"/>
+        </record>
+
+        <record id="vehicle_reservation_schedule_coord_rule" model="ir.rule">
+            <field ref="base_fleet_reservation.model_vehicle_reservation_schedule" name="model_id"/>
+            <field name="name">Vehicle Reservation Schedule Coordinator</field>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field eval="[(4,ref('base_employee.coordinator_group'))]" name="groups"/>
+        </record>
+        
+        <record id="expense_hou_rule" model="ir.rule">
+            <field ref="openauto_expense.model_hr_expense" name="model_id"/>
+            <field name="name">Expense HOU</field>
+            <field name="domain_force">[('custom_department_id','=',user.department_id.id)]</field>
+            <field eval="[(4,ref('base_employee.head_of_unit_group'))]" name="groups"/>
+        </record>
+        
+        <record id="expense_coor_rule" model="ir.rule">
+            <field ref="openauto_expense.model_hr_expense" name="model_id"/>
+            <field name="name">Expense Coordinator</field>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field eval="[(4,ref('base_employee.coordinator_group'))]" name="groups"/>
+        </record>
+        
+        <record id="expense_sheet_employee_rule" model="ir.rule">
+            <field ref="openauto_expense.model_hr_expense_sheet" name="model_id"/>
+            <field name="name">Expense Sheet Employee</field>
+            <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+            <field eval="[(4,ref('base.group_user'))]" name="groups"/>
+        </record>
+        
+        <record id="expense_sheet_hou_rule" model="ir.rule">
+            <field ref="openauto_expense.model_hr_expense_sheet" name="model_id"/>
+            <field name="name">Expense Sheet HOU</field>
+            <field name="domain_force">[('custom_department_id','=',user.department_id.id)]</field>
+            <field eval="[(4,ref('base_employee.head_of_unit_group'))]" name="groups"/>
+        </record>
+        
+        <record id="expense_sheet_coor_rule" model="ir.rule">
+            <field ref="openauto_expense.model_hr_expense_sheet" name="model_id"/>
+            <field name="name">Expense Sheet Coordinator</field>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field eval="[(4,ref('base_employee.coordinator_group'))]" name="groups"/>
+        </record>
+        
+        <record id="account_invoice_hou_rule" model="ir.rule">
+            <field ref="openauto_membership_deposit.model_account_invoice" name="model_id"/>
+            <field name="name">Account Invoice HOU</field>
+            <field name="domain_force">[('department_id','=',user.department_id.id)]</field>
+            <field eval="[(4,ref('base_employee.head_of_unit_group'))]" name="groups"/>
+        </record>
+        <record id="account_invoice_coor_rule" model="ir.rule">
+            <field ref="openauto_membership_deposit.model_account_invoice" name="model_id"/>
+            <field name="name">Account Invoice Coordinator</field>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field eval="[(4,ref('base_employee.coordinator_group'))]" name="groups"/>
+        </record>
 
     </data>
 </odoo>

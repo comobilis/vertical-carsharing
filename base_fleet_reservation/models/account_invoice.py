@@ -15,12 +15,12 @@ class AccountInvoice(models.Model):
     vehicle_reservation_id = fields.Many2one(
         'fleet.vehicle.reservation',
         string="Vehicle Reservation",
-        readonly=True,
+#        readonly=True,
     )
     reservation_employee_id = fields.Many2one(
         'hr.employee',
         string="Employee",
-        readonly=True,
+#        readonly=True,
     )
     department_id = fields.Many2one(
         'hr.department',
@@ -28,7 +28,7 @@ class AccountInvoice(models.Model):
     )
     is_reservation_invoice = fields.Boolean(
         string="Is Vehicle Reservation Invoice ?",
-        readonly=True,
+#        readonly=True,
     )
     reservation_schedule_id = fields.Many2one(
         'vehicle.reservation.schedule',

@@ -10,6 +10,8 @@
                 <xpath expr="//field[@name='color']" position="after">
                     <field name="vehicle_type_id" widget="selection"/>
                     <field name="vehicle_sub_type_id" widget="selection"/>
+                    <field name="product_id"/>
+                    <field name="product_hour_id"/>
                 </xpath>
                 <xpath expr="//sheet" position="inside">
                     <notebook>
@@ -18,6 +20,10 @@
                                 <group name="vehicle_fees">
                                     <field name="is_use_vehicle_fees"/>
                                     <field name="is_use_vehicle_time_fees"/>
+                                </group>
+                                <group name="car_taken">
+                                    <field name="car_taken_minute" widget="float_time"/>
+                                    <field name="billing_multiplier"/>
                                 </group>
                             </group>
                             <field name="vehicle_dest_cost_ids" attrs="{'invisible': [('is_use_vehicle_fees', '=', False)]}">
@@ -50,12 +56,23 @@
                         <page name="vehicle_reserve_time" string="Vehicle Reserve Time Information">
                             <group>
                                 <group>
+                                    <field name="is_allowed_friend_family"/>
                                     <field name="vehicle_reserve_time"/>
                                     <field name="during_hour_from" attrs="{'invisible': [('vehicle_reserve_time', '!=', 'each_hour_on_days')]}"/>
                                     <field name="during_hour_to" attrs="{'invisible': [('vehicle_reserve_time', '!=', 'each_hour_on_days')]}"/>
                                     <field name="during_per_hour_from" attrs="{'invisible': [('vehicle_reserve_time', '!=', 'day_per_hour_x')]}"/>
                                     <field name="during_per_hour_to" attrs="{'invisible': [('vehicle_reserve_time', '!=', 'day_per_hour_x')]}"/>
                                     <field name="allow_higher_pricing" attrs="{'invisible': [('vehicle_reserve_time', '!=', 'allow_higher_pricing')]}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="account"  string="Account">
+                            <group name="analytic_group">
+                                <group>
+                                    <field name="analytic_account_id"/>
+                                </group>
+                                <group>
+                                    <field name="analytic_tag_ids" widget="many2many_tags"/>
                                 </group>
                             </group>
                         </page>

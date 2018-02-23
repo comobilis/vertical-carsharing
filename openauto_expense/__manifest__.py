@@ -18,7 +18,8 @@ This module allow Handle vehicle expenses
     'website': 'http://www.openauto.ch',
     'depends': [
                 'hr_expense',
-                'base_fleet',
+#                'base_fleet',
+                'base_fleet_reservation',
     ],
     'data':[
             'data/vehicle_service_data.xml',

@@ -5,22 +5,12 @@
         <record id="hr_employee_reservation_form_view" model="ir.ui.view">
             <field name="name">Hr Employee vehicle reservation form</field>
             <field name="model">hr.employee</field>
-            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="inherit_id" ref="base_employee.hr_base_employee_inherit_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//notebook/page[last()]" position="after">
-                    <page name="vehicle_reservation" string="Vehicle Reservation">
-                        <group>
-<!--                            <group>-->
-<!--                                <field name="open_invoice_due_date"/>-->
-<!--                            </group>-->
-                            <group name="advance_payment_level">
-                                <field name="advance_payment_level_id"/>
-                            </group>
-                        </group>
+                <xpath expr="//notebook/page[@name='vehicle_reservation']/group[@name='main_grp']" position="after">
                         <field name="vehicle_reservation_ids"/>
-                    </page>
                 </xpath>
-                <xpath expr="//div[@class='oe_button_box']" position="inside">
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
                     <button class="oe_stat_button" name="action_vehicle_reservation" string="Vehicle Reservations" type="object" icon="fa-bars"/>
                     <button class="oe_stat_button" name="action_reservation_calendar" string="Reservations Meetings" type="object" icon="fa-pencil-square-o"/>
                     <button class="oe_stat_button" name="action_invoice" string="Invoices" type="object" icon="fa-pencil-square-o"/>

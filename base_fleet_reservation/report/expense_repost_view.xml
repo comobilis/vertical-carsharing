@@ -9,12 +9,12 @@
                 <p t-field="o.custom_department_id.name"/>
             </div>
         </xpath>
-        <xpath expr="//table[@class='table table-condensed']/thead/tr/th[@class='text-center']" position="before">
+        <xpath expr="//table[hasclass('table table-condensed')]/thead/tr/th[hasclass('text-center')]" position="before">
             <th>Vehicle Reservation</th>
             <th>Vehicle Reservation Schedule</th>
             <th>Vehicle</th>
         </xpath>
-        <xpath expr="//table[@class='table table-condensed']/tbody/tr/td[@style='text-center']" position="before">
+        <xpath expr="//table[hasclass('table table-condensed')]/tbody/tr/td[@style='text-center']" position="before">
             <td>
                 <span t-field="line.vehicle_reservation_id"/>
             </td>

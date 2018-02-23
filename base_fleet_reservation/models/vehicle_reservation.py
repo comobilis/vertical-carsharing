@@ -301,7 +301,7 @@ class FleetVehicleReservation(models.Model):
 
     def _is_partner_block(self, rec):
         invoice_obj = rec.env['account.invoice']
-        invoice_ids = invoice_obj.search([
+        invoice_ids = invoice_obj.sudo().search([
             ('partner_id', '=', rec.invoice_partner_id.id),
             ('state', '=', 'open')]
         )
