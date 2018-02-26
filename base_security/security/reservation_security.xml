@@ -123,6 +123,25 @@
             <field eval="[(4,ref('base_employee.coordinator_group'))]" name="groups"/>
         </record>
 
+        <record id="calendar.calendar_event_rule_employee" model="ir.rule">
+            <field ref="base_fleet_reservation.model_calendar_event" name="model_id"/>
+            <field name="name">CalendarEvent</field>
+            <field name="domain_force">[('vehicle_reserved_employee_id.user_id', '=', user.id)]</field>
+            <field eval="[(4,ref('base.group_user'))]" name="groups"/>
+        </record>
+        <record id="calendar_event_hou_rule" model="ir.rule">
+            <field ref="base_fleet_reservation.model_calendar_event" name="model_id"/>
+            <field name="name">Event HOU</field>
+            <field name="domain_force">[('department_id','=',user.department_id.id)]</field>
+            <field eval="[(4,ref('base_employee.head_of_unit_group'))]" name="groups"/>
+        </record>
+        <record id="calendar_event_coor_rule" model="ir.rule">
+            <field ref="base_fleet_reservation.model_calendar_event" name="model_id"/>
+            <field name="name">Event Coordinator</field>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field eval="[(4,ref('base_employee.coordinator_group'))]" name="groups"/>
+        </record>
+
     </data>
 </odoo>
 

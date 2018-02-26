@@ -18,15 +18,23 @@
                         <button name="%(action_return_vehicle)d" string="Return Vehicle" class="oe_highlight" type="action" attrs="{'invisible': [('is_return', '!=', False)]}" groups="base_employee.coordinator_group"/>
                     </header>
                 </xpath>
+                <xpath expr="//notebook/page[@name='page_details']/group[last()]" position="inside">
+                    <group name="vehicle_reservation" sring="Vehicle Reservation">
+                        <field name="vehicle_reserved_employee_id"/>
+                        <field name="department_id"/>
+                        <field name="company_id"/>
+                    </group>
+                </xpath>
                 <xpath expr="//notebook" position="inside">
                     <page name="reservation_info" string="Vehicle Reservation Details">
                         <group name="reservation">
                             <group name="vehicle">
-                                <field name="vehicle_reserved_employee_id" invisible="True"/>
+<!--                                <field name="company_id"/>-->
+<!--                                <field name="vehicle_reserved_employee_id"/>-->
                                 <field name="vehicle_type_id"/>
                                 <field name="vehicle_sub_type_id"/>
                                 <field name="vehicle_id"/>
-                                <field name="department_id"/>
+<!--                                <field name="department_id"/>-->
                             </group>
                             <group name="vehicle_reserv">
                                 <field name="vehicle_reservation_id"/>
@@ -64,7 +72,19 @@
                 </xpath>
             </field>
         </record>
-        
+
+        <record id="event_vehicle_reservation_cal_view" model="ir.ui.view">
+            <field name="name">Calendar Event vehicle reserv form</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_calendar"/>
+            <field name="arch" type="xml">  
+                <xpath expr="field[@name='name']" position="after">
+                    <field name="vehicle_reserved_employee_id"/>
+                    <field name="vehicle_reservation_id"/>
+                </xpath>
+            </field>
+        </record>
+
         <record id="event_vehicle_reservation_search_view" model="ir.ui.view">
             <field name="name">Calendar Event vehicle reserv search inherit</field>
             <field name="model">calendar.event</field>
@@ -72,12 +92,21 @@
             <field name="arch" type="xml">
                 <xpath expr="//group" position="inside">
                     <filter string="Reserved Vehicle" domain="[]" context="{'group_by':'vehicle_id'}"/>
+                    <filter string="Employee" domain="[]" context="{'group_by':'vehicle_reserved_employee_id'}"/>
+                    <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
+                    <filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
                 </xpath>
                 <xpath expr="//field[last()]" position="after">
                     <field name="vehicle_reservation_id"/>
                 </xpath>
             </field>
         </record>
+
+        <menuitem id="calendar_event_vehicle_reservation" name="Bookings" parent="base_fleet.menu_fleet_vehicle_reservation" sequence="1" groups="base.group_user"/>
+        <menuitem id="calender_vehicle_booking" name="Bookings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event"/>
+        <menuitem id="calender_my_vehicle_booking" name="My Bokings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event"/>
+        <menuitem id="calender_my_dept_vehicle_booking" name="My Department Bokings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event" groups="base_employee.head_of_unit_group"/>
+        <menuitem id="calender_all_vehicle_booking" name="All Bokings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event" groups="base_employee.coordinator_group"/>
 
     </data>
 </odoo>

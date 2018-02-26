@@ -459,7 +459,8 @@ class FleetVehicleReservation(models.Model):
                         'person_phone': rec.person_phone,
                         'person_name': rec.person_name,
                         'vehicle_reserved_employee_id':
-                        rec.reserving_employee_id.id}
+                        rec.reserving_employee_id.id,
+                        'company_id':rec.company_id,}
                 event = rec.env['calendar.event'].create(vals)
                 schedule_id.calendar_event_id = event.id
             if event:

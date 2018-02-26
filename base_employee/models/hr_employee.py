@@ -52,7 +52,7 @@ class HrEmployee(models.Model):
     def write(self, vals):
         result = super(HrEmployee, self).write(vals)
         for rec in self:
-            if vals.get('department_id'):
+            if vals.get('department_id') and rec.user_id:
                 rec.user_id.department_id = rec.department_id.id
                 rec.user_id.partner_id.department_id = rec.department_id.id
         return result

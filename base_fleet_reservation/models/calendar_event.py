@@ -33,7 +33,7 @@ class CalendarEvent(models.Model):
     department_id = fields.Many2one(
         'hr.department',
         string='Department',
-        readonly=True,
+#        readonly=True,
     )
     state = fields.Selection(
         selection=[('draft', 'Draft'),
@@ -112,7 +112,7 @@ class CalendarEvent(models.Model):
     vehicle_reserved_employee_id = fields.Many2one(
         'hr.employee',
         string='Vehicle Reserved By',
-        readonly=True,
+#        readonly=True,
     )
     #New 26_JAN_18
     check_in_datetime = fields.Datetime(
@@ -139,6 +139,16 @@ class CalendarEvent(models.Model):
     extra_time_no_reservation = fields.Boolean(
         string="Extra Time & No Other Reservation",
     )
+    company_id = fields.Many2one(
+        'res.company',
+        string="Company",
+        default=lambda self:self.env.user.company_id.id,
+    )
+    
+    @api.onchange('vehicle_reserved_employee_id')
+    def onchange_employee_id(self):
+        if self.vehicle_reserved_employee_id and self.vehicle_reserved_employee_id.department_id:
+            self.company_id = self.vehicle_reserved_employee_id.department_id.company_id.id
 
     @api.multi
     def act_show_invoices(self):
