@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="reservation_notification_config_view" model="ir.ui.view">
+            <field name="name">reservation.notification.config form</field>
+            <field name="model">reservation.notification.config</field>
+            <field name="arch" type="xml">
+                <form name="">
+                    <sheet>
+                        <group name="">
+                            <group name="hour_schedule">
+                                <field name="hour_schedule"/>
+                                <field name="check_in_email_template"/>
+                            </group>
+                            <group name="email_template">
+                                <field name="email_template"/>
+                                <field name="vehicle_return_email_template"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="reservation_notification_config_tree" model="ir.ui.view">
+            <field name="name">reservation.notification.config tree</field>
+            <field name="model">reservation.notification.config</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="hour_schedule"/>
+                    <field name="email_template"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_reservation_notification_config" model="ir.actions.act_window">
+            <field name="name">Reservation Notification Config</field>
+            <field name="res_model">reservation.notification.config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add an Reservation Notification Configurations.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_reservation_notification_config" name="Reservation Notification" parent="base_fleet.menu_fleet_vehicle_reservation_config" action="action_reservation_notification_config"/>
+            
+    </data>
+</odoo>

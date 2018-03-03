@@ -4,7 +4,7 @@
 
         <menuitem id="menu_fleet_vehicle_reservation" name="Vehicle Reservation" groups="base.group_user"/>
         
-        <menuitem id="menu_fleet_vehicle_main_view" name="Vehicles" parent="menu_fleet_vehicle_reservation" groups="base_employee.coordinator_group"/>
+        <menuitem id="menu_fleet_vehicle_main_view" name="Vehicles" parent="menu_fleet_vehicle_reservation" groups="base_employee.coordinator_group" sequence="2"/>
         <menuitem id="menu_fleet_vehicle_view" name="Vehicles" parent="menu_fleet_vehicle_main_view" action="fleet.fleet_vehicle_action"/>
 
         <menuitem id="menu_fleet_vehicle_reservation_config" name="Configuration" parent="menu_fleet_vehicle_reservation" sequence="100" groups="base_employee.coordinator_group"/>

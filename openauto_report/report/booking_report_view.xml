@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <report
+            id="report_vehicle_bookings" 
+            model="calendar.event"
+            report_type="qweb-pdf"
+            string="Reservation Booking"
+            name="openauto_report.vehicle_bookings_report"
+            file="openauto_report.vehicle_bookings_report"
+         />
+        <template id="vehicle_bookings_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="text-right"><strong>Printed by :</strong> <span t-esc="doc.env.user.name"/></div>
+                        <div class="text-right" ><strong>Printed on :</strong> <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')"/></div>
+                        <div class="row mt32 mb32">
+                            <div class="col-xs-2">
+                                <strong>Company:</strong>
+                                <p t-field="doc.company_id.name"/>
+                            </div>
+                            <div class="col-xs-2">
+                                <strong>Department:</strong>
+                                <p t-field="doc.department_id.name"/>
+                            </div>
+                        </div>
+                        <div>
+                            <center><h3>Reservation Bookings</h3></center>
+                            <center><h3><span t-esc="doc_report['start_date']"/> to <span t-esc="doc_report['end_date']"/></h3></center>
+                        </div>
+<!--                            <h3><span t-if="doc.reservation_schedule_ids">Reservation Schedule</span></h3>-->
+                            <table class="table table-condensed">
+                                <thead>
+                                    <th>Name</th>
+                                    <th>Vehicle Reservation</th>
+                                    <th>Vehicle</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Check in Date</th>
+                                    <th>Return Date</th>
+                                    <th>Total K/M</th>
+                                    <th>Total H/R</th>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="bookings" t-as='booking'>
+                                        <tr>
+                                            <td colspan="9">
+                                                <strong><span t-field="booking.name" /></strong>
+                                            </td>
+                                        </tr>
+                                        <tr t-foreach="bookings[booking]" t-as='event'>
+                                            <td>
+                                                <span t-field="event.name" />
+                                            </td>
+                                            <td>
+                                                <span t-field="event.vehicle_reservation_id.name" />
+                                            </td>
+                                            <td>
+                                                <span t-field="event.vehicle_id.name" />
+                                            </td>
+                                            <td>
+                                                <span t-field="event.start" />
+                                            </td>
+                                            <td>
+                                                <span t-field="event.stop" />
+                                            </td>
+                                            <td>
+                                                <span t-field="event.check_in_datetime" />
+                                            </td>
+                                            <td>
+                                                <span t-field="event.return_date_time" />
+                                            </td>
+                                            <td>
+                                                <span t-field="event.total_km" />
+                                            </td>
+                                            <td>
+                                                <span t-field="event.total_hour" />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                    </div>
+                    </t>
+                </t>
+        </template>
+    </data>
+</odoo>

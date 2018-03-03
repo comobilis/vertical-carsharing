@@ -27,28 +27,30 @@
                            <tr>
                                <td><strong>Employee </strong></td>
                                <td><span t-field="doc.reserving_employee_id.name"/></td>
-                               <td><strong>Create Date</strong></td>
-                               <td> <span t-field="doc.create_date"/></td>
+                               <td><strong>RFID key </strong></td>
+                               <td><span t-field="doc.rfid_key"/></td>
                            </tr>
                            <tr>
-                               <td><strong>Department </strong></td>
-                               <td><span t-field="doc.department_id.name"/></td>
+                                <td><strong>Create Date</strong></td>
+                               <td> <span t-field="doc.create_date"/></td>
                                <td><strong>Created By</strong></td>
                                <td> <span t-field="doc.created_user_id.name"/></td>
                            </tr>
                            <tr>
+                               <td><strong>Department </strong></td>
+                               <td><span t-field="doc.department_id.name"/></td>
                                <td><strong>Partner</strong></td>
                                <td> <span t-field="doc.partner_id.name"/></td>
-                               <td><strong>Reference</strong></td>
-                               <td> <span t-field="doc.refernce"/></td>
                            </tr>
                            <tr>
                                <td><strong>Company </strong></td>
                                <td><span t-field="doc.company_id.name"/></td>
-                               <td><strong>Pricelist </strong></td>
-                               <td><span t-field="doc.pricelist_id.name"/></td>
+                               <td><strong>Reference</strong></td>
+                               <td> <span t-field="doc.refernce"/></td>
                            </tr>
                            <tr>
+                                <td><strong>Pricelist </strong></td>
+                               <td><span t-field="doc.pricelist_id.name"/></td>
                                <td><strong>Currency</strong></td>
                                <td><span t-field="doc.currency_id.name"/></td>
                            </tr>

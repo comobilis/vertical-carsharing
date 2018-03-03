@@ -7,6 +7,11 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//sheet/div[@name='button_box']" position="inside">
+                        <button class="oe_stat_button" name="action_reservation_view"
+                                string="Reservations" type="object"
+                                icon="fa-bars" ><i class=""></i></button>
+                </xpath>
                 <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="after">
                     <field name="vehicle_id"/>
                 </xpath>
@@ -18,14 +23,26 @@
                         <group name="vehicle_res">
                             <group name="grp_employee">
                                 <field name="reservation_employee_id"/>
+                                <field name="rfid_key"/>
                                 <field name="department_id"/>
                             </group>
                             <group name="grp_reservation">
-                                <field name="vehicle_reservation_id"/>
+<!--                                <field name="vehicle_reservation_id"/>-->
                                 <field name="is_reservation_invoice"/>
                             </group>
                         </group>
                     </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="account_invoice_search_view" model="ir.ui.view">
+            <field name="name">Account Invoice inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter_inherit_invoices"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[last()]" position="after">
+                    <field name="rfid_key"/>
                 </xpath>
             </field>
         </record>

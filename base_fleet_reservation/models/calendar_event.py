@@ -12,23 +12,23 @@ class CalendarEvent(models.Model):
     vehicle_type_id = fields.Many2one(
         'fleet.vehicle.type',
         string="Vehicle Type",
-        readonly=True,
+#        readonly=True,
     )
     vehicle_sub_type_id = fields.Many2one(
         'fleet.vehicle.sub.type',
         string="Vehicle Sub Type",
-        readonly=True,
+#        readonly=True,
     )
     vehicle_id = fields.Many2one(
         'fleet.vehicle',
         string="Reserved Vehicle",
         store=True,
-        readonly=True,
+#        readonly=True,
     )
     vehicle_reservation_id = fields.Many2one(
         'fleet.vehicle.reservation',
         string="Vehicle Reservation",
-        readonly=True,
+#        readonly=True,
     )
     department_id = fields.Many2one(
         'hr.department',
@@ -48,7 +48,7 @@ class CalendarEvent(models.Model):
     reservation_schedule_id = fields.Many2one(
         'vehicle.reservation.schedule',
         string="Reservation Schedule",
-        readonly=True,
+#        readonly=True,
     )
     is_return = fields.Boolean(
         string='Is Return ?',
@@ -79,35 +79,34 @@ class CalendarEvent(models.Model):
     )
     is_service_vehicle_reservation = fields.Boolean(
         string="This reservation is to be able to Service the vehicle",
-        readonly=True,
+#        readonly=True,
     )
     reservation_service_type_id = fields.Many2one(
         'fleet.service.type',
         string="Service Type",
-        readonly=True,
+#        readonly=True,
     )
     is_reserve_for_other = fields.Boolean(
         string="This reservation is for Friends or Family",
-        readonly=True,
+#        readonly=True,
     )
     employee_present_status = fields.Selection([
         ('present', 'Employee/Member Present'),
         ('absent', 'Employee/Member Not Present')],
         string="Employee Present Status",
-        readonly=True,
+#        readonly=True,
     )
     person_phone = fields.Char(
         string='Person Phone',
-        copy=True,
-        readonly=True,
+#        readonly=True,
     )
     person_name = fields.Char(
         string="Person Name",
-        readonly=True,
+#        readonly=True,
     )
     deposit_charge_amount = fields.Float(
         string="Deposit Amount",
-        readonly=True,
+#        readonly=True,
     )
     vehicle_reserved_employee_id = fields.Many2one(
         'hr.employee',
@@ -134,7 +133,7 @@ class CalendarEvent(models.Model):
         readonly=True,
     )
     prolog_hours = fields.Float(
-        string="Prolog Hours",
+        string="Prolong Hours",
     )
     extra_time_no_reservation = fields.Boolean(
         string="Extra Time & No Other Reservation",
@@ -144,11 +143,20 @@ class CalendarEvent(models.Model):
         string="Company",
         default=lambda self:self.env.user.company_id.id,
     )
+    rfid_key = fields.Char(
+        string="RFID Key",
+        copy=False,
+#        readonly=True,
+    )
     
     @api.onchange('vehicle_reserved_employee_id')
     def onchange_employee_id(self):
-        if self.vehicle_reserved_employee_id and self.vehicle_reserved_employee_id.department_id:
-            self.company_id = self.vehicle_reserved_employee_id.department_id.company_id.id
+        for rec in self:
+            if rec.vehicle_reserved_employee_id and rec.vehicle_reserved_employee_id.department_id:
+                rec.company_id = rec.vehicle_reserved_employee_id.department_id.company_id.id
+            if rec.vehicle_reserved_employee_id:
+                rec.rfid_key = rec.vehicle_reserved_employee_id.rfid_key
+#            self.rfid_key = self.vehicle_reserved_employee_id.rfid_key
 
     @api.multi
     def act_show_invoices(self):

@@ -43,6 +43,7 @@ class ReturnVehicleWiz(models.TransientModel):
             raise ValidationError("You are not sure so\
                     you can not return vehicle.")
         else:
+            notification_obj = self.env['reservation.notification.config']
             event_id = self.env['calendar.event'].browse(
                 int(self._context['active_id'])
             )
@@ -61,5 +62,10 @@ class ReturnVehicleWiz(models.TransientModel):
                         event_ids = self.env[active_model].search([('start','<=',event_id.stop),('start','>=',fields.Datetime.now()),('is_return','=',False)])
                         if not event_ids:
                             event_id.reservation_schedule_id.extra_time_no_reservation = self.extra_time_no_reservation
+                notification_ids = notification_obj.search([])
+                if notification_ids:
+                    if notification_ids[0].vehicle_return_email_template:
+                        return_email_template = notification_ids[0].vehicle_return_email_template
+                        return_email_template.send_mail(event_id.id, force_send=True)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

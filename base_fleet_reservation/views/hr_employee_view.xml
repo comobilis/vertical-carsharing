@@ -18,5 +18,16 @@
             </field>
         </record>
 
+        <record id="view_employee_search_view" model="ir.ui.view">
+            <field name="name">Employee search inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[last()]" position="after">
+                    <field name="rfid_key"/>
+                </xpath>
+            </field>
+        </record>
+
     </data>
 </odoo>

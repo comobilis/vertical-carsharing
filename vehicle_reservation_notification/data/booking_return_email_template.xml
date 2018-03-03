@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        
+        <!--Email template -->
+        <record id="booking_return_email_template" model="mail.template">
+            <field name="name">Vehicle Return Information - Send by Email</field>
+            <field name="email_from">${(object.vehicle_reserved_employee_id.company_id.email)}</field>
+            <field name="subject">${object.name}</field>
+            <field name="email_to">${object.vehicle_reserved_employee_id.work_email}</field>
+            <field name="model_id" ref="base_fleet_reservation.model_calendar_event"/>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+                <p>Dear ${object.vehicle_reserved_employee_id.name},
+
+                <p>
+                Reservation of <strong>${object.vehicle_reservation_id.name} (${object.vehicle_id.name})</strong> for <strong>${object.vehicle_reserved_employee_id.name}</strong> was returned at ${format_tz(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') , tz=ctx['tz'], format='%Y-%m-%d %H:%M:%S')}
+
+                    <br/><br/>
+                <p>You can reply to this email if you have any questions.</p>
+                <p>Thank you,</p>
+
+                <p style="color:#eeeeee;">
+                % if object.vehicle_reserved_employee_id.user_id and object.vehicle_reserved_employee_id.user_id.signature:
+                    ${object.vehicle_reserved_employee_id.user_id.signature | safe}
+                % endif
+                </p>
+                ]]>
+            </field>
+        </record>
+    
+    </data>
+</odoo>
+ 
+

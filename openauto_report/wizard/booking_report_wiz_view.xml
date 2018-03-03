@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="booking_report_wiz_view" model="ir.ui.view">
+            <field name="name">booking.report.wiz</field>
+            <field name="model">booking.report.wiz</field>
+                <field name="arch" type="xml">
+                    <form string="Booking Report">
+                        <label string="Booking Report"/>
+                        <group>
+                            <group>
+                                <field name="company_id"/>
+                                <field name="start_date"/>
+                            </group>
+                            <group>
+                                <field name="department_id" domain="[('company_id','=',company_id)]"/>
+                                <field name="end_date"/>
+                            </group>
+                            <field name="employee_ids" domain="[('company_id','=',company_id),('department_id','=',department_id)]"/>
+                        </group>
+                        <footer>
+                            <button name="action_print_report" type="object" string="Print" class="btn-primary"/>
+                            or
+                            <button string="_Cancel" class="btn-default" special="cancel" />
+                        </footer>
+                    </form>
+                </field>
+        </record>
+        
+        <record id="action_booking_report_wiz" model="ir.actions.act_window">
+            <field name="name">Booking Report</field>
+            <field name="res_model">booking.report.wiz</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="booking_report_wiz_view"/>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+        </record>
+
+        
+   </data>
+</odoo>

@@ -15,7 +15,7 @@
             </field>
         </record>
         
-        <menuitem id="menu_fleet_vehicle_cost_view" name="Vehicle Costs" parent="base_fleet.menu_fleet_vehicle_main_view" action="fleet.fleet_vehicle_costs_action" sequence="1"/>
+<!--        <menuitem id="menu_fleet_vehicle_cost_view" name="Vehicle Costs" parent="base_fleet.menu_fleet_vehicle_main_view" action="fleet.fleet_vehicle_costs_action" sequence="1"/>-->
         
     </data>
 </odoo>

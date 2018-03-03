@@ -33,6 +33,10 @@ class FleetVehicleReservation(models.Model):
         string="Employee",
         required=True,
     )
+    rfid_key = fields.Char(
+        string="RFID Key",
+#        readonly=True,
+    )
     department_id = fields.Many2one(
         'hr.department',
         string='Department',
@@ -186,6 +190,7 @@ class FleetVehicleReservation(models.Model):
         self.department_id = self.reserving_employee_id.department_id.id
         self.hou_user_id = self.reserving_employee_id.department_id.hou_user_id.id
         self.coordinator_user_id = self.company_id.coordinator_user_id.id
+        self.rfid_key = self.reserving_employee_id.rfid_key
         
     @api.onchange('hou_user_id')
     def _onchange_hou_user_id(self):
@@ -460,7 +465,8 @@ class FleetVehicleReservation(models.Model):
                         'person_name': rec.person_name,
                         'vehicle_reserved_employee_id':
                         rec.reserving_employee_id.id,
-                        'company_id':rec.company_id,}
+                        'company_id':rec.company_id,
+                        'rfid_key':rec.rfid_key,}
                 event = rec.env['calendar.event'].create(vals)
                 schedule_id.calendar_event_id = event.id
             if event:

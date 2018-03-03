@@ -9,6 +9,10 @@
                     <strong>Employee:</strong>
                     <p t-field="o.reservation_employee_id.name"/>
                 </div>
+                <div class="col-xs-2" t-if="o.reservation_employee_id">
+                    <strong>RFID Key:</strong>
+                    <p t-field="o.rfid_key"/>
+                </div>
                 <div class="col-xs-2" t-if="o.department_id">
                     <strong>Department:</strong>
                     <p t-field="o.department_id.name"/>

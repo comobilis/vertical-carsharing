@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <report
+        id="report_vehicle_reservation_schedule" 
+        model="vehicle.reservation.schedule"
+        report_type="qweb-pdf"
+        string="Vehicle Reservation"
+        name="openauto_report.vehicle_reservation_schedule_print"
+        file="openauto_report.vehicle_reservation_schedule_print"
+     />
+         
+    <template id="vehicle_reservation_schedule_print">
+        <t t-foreach="docs" t-as="doc">
+        <t t-call="web.internal_layout">
+            <div class="page">
+                <div class="oe_structure"/>
+                <div class="text-right"><strong>Printed by :</strong> <span t-esc="doc.env.user.name"/></div>
+                <div class="text-right" ><strong>Printed on :</strong> <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')"/></div>
+                <div>
+                    <center><h3>Vehicle Reservation Details </h3></center>
+                    <center><h3><span t-field="doc.name"/></h3></center>
+                </div>
+                    
+                <div class="mt32 mb32">
+                    <table class="table table-condensed">
+                       <tr>
+                           <td><strong>Employee </strong></td>
+                           <td class=""><span t-field="doc.employee_id.name"/></td>
+                           <td><strong>Vehicle Reservation</strong></td>
+                           <td><span t-field="doc.fleet_vehicle_reservation_id.name"/></td>
+                           <td><strong>Reservation Date </strong></td>
+                           <td><span t-field="doc.reservation_date"/></td>
+                       </tr>
+                       <tr class="mt16">
+                           <td><strong>Department </strong></td>
+                           <td class=""><span t-field="doc.department_id.name"/></td>
+                           <td><strong>Vehicle Type</strong></td>
+                           <td><span t-field="doc.vehicle_type_id.name"/></td>
+                           <td><strong>Start Date </strong></td>
+                           <td><span t-field="doc.start_date_time"/></td>
+                       </tr>
+                       <tr>
+                           <td><strong>Partner </strong></td>
+                           <td class=""><span t-field="doc.partner_id.name"/></td>
+                           <td><strong>Vehicle Sub Type</strong></td>
+                           <td><span t-field="doc.vehicle_sub_type_id.name"/></td>
+                           <td><strong>End Date </strong></td>
+                           <td><span t-field="doc.end_date_time"/></td>
+                       </tr>
+                       <tr>
+                           <td><strong>Company </strong></td>
+                           <td class=""><span t-field="doc.company_id.name"/></td>
+                           <td><strong>Vehicle</strong></td>
+                           <td><span t-field="doc.vehicle_id.name"/></td>
+                           <td></td>
+                           <td></td>
+                       </tr>
+                    </table>
+                </div>
+                <div class="mt32 mb32">
+                    <table class="table table-condensed">
+                       <tr>
+                           <td><strong>Is Return </strong></td>
+                           <td class=""><t t-if="is_return">Yes</t><t t-if="not is_return">No</t></td>
+                           <td></td>
+                           <td></td>
+                           <td><strong>Billing Type</strong></td>
+                           <td><span t-field="doc.billing_type"/></td>
+                       </tr>
+                       <tr class="mt16">
+                           <td><strong>Return Actual K/M </strong></td>
+                           <td class=""><span t-field="doc.total_km"/></td>
+                           <td></td>
+                           <td></td>
+                           <td><strong>Return Actual H/R</strong></td>
+                           <td><span t-field="doc.total_hour"/></td>
+                       </tr>
+                       <tr>
+                           <td><strong>Extra Time And no other Reservation </strong></td>
+                           <td class=""><t t-if="extra_time_no_reservation">Yes</t><t t-if="not extra_time_no_reservation">No</t></td>
+                           <td></td>
+                           <td></td>
+                           <td><strong>Prolng Hours</strong></td>
+                           <td><span t-field="doc.prolog_hours"/></td>
+                       </tr>
+                       <tr>
+                           <td><strong>Invoice </strong></td>
+                           <td class=""><span t-field="doc.invoice_id.name"/></td>
+                           <td></td>
+                           <td></td>
+                           <td><strong>Amount Pay</strong></td>
+                           <td><span t-field="doc.invoice_amount_to_pay"/></td>
+<!--                           <td></td>-->
+<!--                           <td></td>-->
+                       </tr>
+                    </table>
+                </div>
+            </div>
+        </t>
+        </t>
+    </template>
+        
+</data>
+</odoo>
+

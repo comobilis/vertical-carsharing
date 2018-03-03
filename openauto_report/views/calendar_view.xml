@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="event_vehicle_reservation_form_report_view" model="ir.ui.view">
+            <field name="name">Calendar Event vehicle reserv form</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="base_fleet_reservation.event_vehicle_reservation_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                        <button name="%(openauto_report.report_vehicle_reservation_booking)d" string="Print" class="oe_highlight" type="action" groups="base_employee.coordinator_group"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

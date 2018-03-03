@@ -51,9 +51,16 @@ class RecieveVehicleWiz(models.TransientModel):
         event_id = self.env['calendar.event'].browse(
             int(self._context['active_id'])
         )
+        notification_obj = self.env['reservation.notification.config']
         car_taken_early = self._car_taken_early(event_id)
         if event_id:
             event_id.check_in_datetime = self.check_in_datetime
             event_id.recieve_employee_id = self.recieve_employee_id.id
+            notification_ids = notification_obj.search([])
+            if notification_ids:
+                if notification_ids[0].check_in_email_template:
+                    checkin_email_template = notification_ids[0].check_in_email_template
+                    checkin_email_template.send_mail(event_id.id, force_send=True)
+            
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

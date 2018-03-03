@@ -36,6 +36,7 @@
                         <group name="vehicle_reserv">
                             <group name="reservation_employee">
                                 <field name="reserving_employee_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="rfid_key"/>
                                 <field name="department_id" attrs="{'readonly':[('state','!=','draft')]}"/>
                                 <field name="partner_id" attrs="{'readonly':[('state','!=','draft')]}"/>
                                 <field name="company_id"/>
@@ -167,6 +168,7 @@
             <field name="arch" type="xml">
                 <search string="Vehicle Reservation">
                     <field name="name" string="Reservation"/>
+                    <field name="rfid_key"/>
                     <filter string="Pending" domain="[('state','=','draft')]"/>
                     <filter string="Confirm" domain="[('state','=','confirm')]"/>
                     <filter string="Reserved" domain="[('state','=','reserved')]"/>
@@ -191,9 +193,9 @@
             <field name="help">Vehicle Reservations</field>
         </record>
 
-        <menuitem id="menu_fleet_vehicle_reservation_main" name="Reservations" parent="base_fleet.menu_fleet_vehicle_reservation" groups="base.group_user" sequence="2"/>
-        <menuitem id="menu_fleet_vehicle_reservation_sub" name="Reservations" parent="menu_fleet_vehicle_reservation_main" 
-        action="action_fleet_vehicle_reservation" groups="base.group_user" sequence="1"/>
+<!--        <menuitem id="menu_fleet_vehicle_reservation_main" name="Reservations" parent="base_fleet.menu_fleet_vehicle_reservation" groups="base.group_user" sequence="2"/>-->
+<!--        <menuitem id="menu_fleet_vehicle_reservation_sub" name="Reservations" parent="menu_fleet_vehicle_reservation_main" -->
+<!--        action="action_fleet_vehicle_reservation" groups="base.group_user" sequence="1"/>-->
             
     </data>
 </odoo>

@@ -18,6 +18,10 @@ class HrEmployee(models.Model):
 #        string="Payment Level"
 #    )
 #    NEW
+    _sql_constraints = [
+        ('Level_rfid_key_uniq', 'unique (rfid_key)',
+            'The Rfid key must be unique per employee !')
+    ]
     rfid_key = fields.Char(
         string="RFID Key",
         copy=False,

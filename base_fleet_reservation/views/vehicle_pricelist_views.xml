@@ -57,6 +57,6 @@
             <field name="help">Vehicle Pricelist</field>
         </record>
         
-        <menuitem id="menu_fleet_vehicle_pricelist" name="Pricelists" parent="base_fleet.menu_fleet_vehicle_reservation_config" action="action_vehicle_pricelist"/>
+<!--        <menuitem id="menu_fleet_vehicle_pricelist" name="Pricelists" parent="base_fleet.menu_fleet_vehicle_reservation_config" action="action_vehicle_pricelist"/>-->
     </data>
 </odoo>

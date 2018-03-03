@@ -23,6 +23,11 @@ Menus:
     ],
     'data': [
         'data/reservation_notification_template.xml',
+        'data/reservation_notification_config_cron.xml',
+        'data/reservation_notification_reminder_template.xml',
+        'data/booking_check_in_email_template.xml',
+        'data/booking_return_email_template.xml',
+        'views/reservation_notification_config_view.xml',
     ],
     'installable' : True,
     'application' : False,

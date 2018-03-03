@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_fleet_vehicle_reservation_main" name="Reservations" parent="base_fleet.menu_fleet_vehicle_reservation" groups="base.group_user" sequence="1"/>
+        <menuitem id="menu_fleet_vehicle_reservation_sub" name="Reservations" parent="menu_fleet_vehicle_reservation_main" action="base_fleet_reservation.action_fleet_vehicle_reservation" groups="base.group_user" sequence="1"/>
+        <menuitem id="menu_fleet_vehicle_reservation_details" name="Reservation Details" parent="menu_fleet_vehicle_reservation_main" action="action_fleet_vehicle_reservation_schedule" groups="base_employee.coordinator_group"/>
+    
+        <menuitem id="calendar_event_vehicle_reservation" name="Bookings" parent="base_fleet.menu_fleet_vehicle_reservation" groups="base.group_user" sequence="3"/>
+        <menuitem id="calender_vehicle_booking" name="Bookings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event" sequence="1"/>
+        <menuitem id="calender_my_vehicle_booking" name="My Bokings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event"/>
+        <menuitem id="calender_my_dept_vehicle_booking" name="My Department Bokings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event" groups="base_employee.head_of_unit_group"/>
+        <menuitem id="calender_all_vehicle_booking" name="All Bokings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event" groups="base_employee.coordinator_group"/>
+    
+    
+        <menuitem id="menu_vehicle_reservation_schedule_report" name="Reporting" parent="base_fleet.menu_fleet_vehicle_reservation" sequence="7"/>
+        <menuitem id="menu_reservation_schedule_line_report" name="Vehicle Reservations" parent="menu_vehicle_reservation_schedule_report" action="base_fleet_reservation.action_vehicle_reservation_schedule_report"/>
+        <menuitem id="menu_analytic_line_profitablity_report" name="Vehicle Profitability" parent="base_fleet_reservation.menu_vehicle_reservation_schedule_report" action="base_fleet_reservation.analytic_line_profitability_reporting_pivot"/>
+        <menuitem id="menu_fleet_vehicle_reservation_schedule" name="Vehicle Reservations" parent="account.menu_finance" action="base_fleet_reservation.action_fleet_vehicle_reservation_schedule" groups="account.group_account_invoice"/>
+<!--        <menuitem id="menu_membership_payment_level" name="Membership Payment Levels" parent="base_fleet.menu_fleet_vehicle_reservation_config" action="base_fleet_reservation.action_membership_payment_level"/>-->
+        
+        <menuitem id="menu_fleet_vehicle_cost_view" name="Vehicle Costs" parent="base_fleet.menu_fleet_vehicle_main_view" action="fleet.fleet_vehicle_costs_action" sequence="1"/>
+        <menuitem id="menu_fleet_vehicle_pricelist" name="Pricelists" parent="base_fleet.menu_fleet_vehicle_reservation_config" action="base_fleet_reservation.action_vehicle_pricelist"/>
+    </data>
+</odoo>

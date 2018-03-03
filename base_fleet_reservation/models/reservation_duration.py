@@ -11,9 +11,16 @@ from odoo.exceptions import ValidationError
 
 class VehicleReservationSchedule(models.Model):
     _name = "vehicle.reservation.schedule"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = "fleet_vehicle_reservation_id"
-    _order = 'id desc'
+#    _order = 'id desc'
 
+    name = fields.Char(
+        string="Number",
+        default='New',
+        copy=False,
+        readonly=True,
+    )
     vehicle_type_id = fields.Many2one(
         'fleet.vehicle.type',
         string="Vehicle Type",
@@ -143,6 +150,19 @@ class VehicleReservationSchedule(models.Model):
 #        'fleet.service.type',
 #        string="Service Type",
 #    )
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', False):
+            if vals.get('name', 'New') != 'New':
+                vals['name'] = 'New'
+
+        if vals.get('name', 'New') == 'New':
+            vals['name'] = self.env['ir.sequence']\
+                .next_by_code('vehicle.reservation.schedule') or 'New'
+        result = super(VehicleReservationSchedule, self).create(vals)
+        result.name = result.fleet_vehicle_reservation_id.name + ' - ' + result.name
+        return result
 
     @api.onchange('end_date_time')
     def end_date_time_change(self):

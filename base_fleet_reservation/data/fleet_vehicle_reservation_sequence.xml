@@ -10,6 +10,14 @@
             <field name="padding">5</field>
             <field name="company_id" eval="False"/>
         </record>
+
+        <record id="seq_fleet_vehicle_reservation_line" model="ir.sequence">
+            <field name="name">Fleet Vehicle Reservation Schedule</field>
+            <field name="code">vehicle.reservation.schedule</field>
+            <field name="prefix">VRL</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
         
     </data>
 </odoo>

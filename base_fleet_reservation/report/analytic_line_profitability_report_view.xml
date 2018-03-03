@@ -11,6 +11,6 @@
             <field name="search_view_id" ref="analytic.view_account_analytic_line_filter"/>
         </record>
     
-        <menuitem id="menu_analytic_line_profitablity_report" name="Vehicle Profitability" parent="base_fleet_reservation.menu_vehicle_reservation_schedule_report" action="base_fleet_reservation.analytic_line_profitability_reporting_pivot"/>
+<!--        <menuitem id="menu_analytic_line_profitablity_report" name="Vehicle Profitability" parent="base_fleet_reservation.menu_vehicle_reservation_schedule_report" action="base_fleet_reservation.analytic_line_profitability_reporting_pivot"/>-->
     </data>
 </odoo>

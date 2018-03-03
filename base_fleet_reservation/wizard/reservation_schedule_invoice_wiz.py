@@ -127,7 +127,7 @@ class ReservationScheduleInvoiceWiz(models.TransientModel):
                     'product_id': schedule.vehicle_id.product_hour_id.id,
                     'uom_id':schedule.vehicle_id.product_hour_id.uom_id.id
                 })
-            if prolog:
+            if prolog and schedule.billing_type == 'per_hr':
                 line_vals.update({
                     'uom_id':schedule.vehicle_id.product_hour_id.uom_id.id
                 })
@@ -253,7 +253,7 @@ class ReservationScheduleInvoiceWiz(models.TransientModel):
                                 schedule,
                                 line_ids)
                                 
-                            if not schedule.extra_time_no_reservation:
+                            if not schedule.extra_time_no_reservation and schedule.billing_type == 'per_hr':
                                 prolog_amount = schedule.vehicle_id.billing_multiplier
                                 prolog = True
                                 flag, line_ids = rec._create_invoice(
@@ -305,7 +305,7 @@ class ReservationScheduleInvoiceWiz(models.TransientModel):
                                     total_hr,
                                     schedule,
                                     line_ids)
-                                if not schedule.extra_time_no_reservation:
+                                if not schedule.extra_time_no_reservation and schedule.billing_type == 'per_hr':
                                     prolog_amount = schedule.vehicle_id.billing_multiplier
                                     prolog = True
                                     flag, line_ids = rec._create_invoice(
@@ -340,7 +340,7 @@ class ReservationScheduleInvoiceWiz(models.TransientModel):
                                     total_hr,
                                     schedule,
                                     line_ids)
-                                if not schedule.extra_time_no_reservation:
+                                if not schedule.extra_time_no_reservation and schedule.billing_type == 'per_hr':
                                     prolog_amount = schedule.vehicle_id.billing_multiplier
                                     prolog = True
                                     flag, line_ids = rec._create_invoice(

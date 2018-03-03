@@ -49,6 +49,8 @@
         'views/hr_department_view.xml',
         'views/res_users_view.xml',
         'views/res_partner_view.xml',
+#        'views/reservation_schedule_view.xml',
+        'views/menu.xml',
     ],
     'installable': True,
     'application': False,

@@ -19,8 +19,9 @@
                     </header>
                 </xpath>
                 <xpath expr="//notebook/page[@name='page_details']/group[last()]" position="inside">
-                    <group name="vehicle_reservation" sring="Vehicle Reservation">
+                    <group name="vehicle_reservation" string="Vehicle Reservation">
                         <field name="vehicle_reserved_employee_id"/>
+                        <field name="rfid_key"/>
                         <field name="department_id"/>
                         <field name="company_id"/>
                     </group>
@@ -98,15 +99,16 @@
                 </xpath>
                 <xpath expr="//field[last()]" position="after">
                     <field name="vehicle_reservation_id"/>
+                    <field name="rfid_key"/>
                 </xpath>
             </field>
         </record>
 
-        <menuitem id="calendar_event_vehicle_reservation" name="Bookings" parent="base_fleet.menu_fleet_vehicle_reservation" sequence="1" groups="base.group_user"/>
-        <menuitem id="calender_vehicle_booking" name="Bookings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event"/>
-        <menuitem id="calender_my_vehicle_booking" name="My Bokings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event"/>
-        <menuitem id="calender_my_dept_vehicle_booking" name="My Department Bokings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event" groups="base_employee.head_of_unit_group"/>
-        <menuitem id="calender_all_vehicle_booking" name="All Bokings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event" groups="base_employee.coordinator_group"/>
+<!--        <menuitem id="calendar_event_vehicle_reservation" name="Bookings" parent="base_fleet.menu_fleet_vehicle_reservation" sequence="1" groups="base.group_user"/>-->
+<!--        <menuitem id="calender_vehicle_booking" name="Bookings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event"/>-->
+<!--        <menuitem id="calender_my_vehicle_booking" name="My Bokings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event"/>-->
+<!--        <menuitem id="calender_my_dept_vehicle_booking" name="My Department Bokings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event" groups="base_employee.head_of_unit_group"/>-->
+<!--        <menuitem id="calender_all_vehicle_booking" name="All Bokings" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="calendar.action_calendar_event" groups="base_employee.coordinator_group"/>-->
 
     </data>
 </odoo>

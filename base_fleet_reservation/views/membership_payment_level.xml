@@ -38,7 +38,7 @@
             <field name="help">Membership Payment Levels</field>
         </record>
         
-        <menuitem id="menu_membership_payment_level" name="Membership Payment Levels" parent="base_fleet.menu_fleet_vehicle_reservation_config" 
-        action="action_membership_payment_level"/>
+<!--        <menuitem id="menu_membership_payment_level" name="Membership Payment Levels" parent="base_fleet.menu_fleet_vehicle_reservation_config" -->
+<!--        action="action_membership_payment_level"/>-->
     </data>
 </odoo>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="booking_report_menu" name="Booking Report" parent="base_fleet_reservation.calendar_event_vehicle_reservation" action="openauto_report.action_booking_report_wiz"/>
+    </data>
+</odoo>

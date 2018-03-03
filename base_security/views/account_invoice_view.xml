@@ -2,8 +2,8 @@
 <odoo>
     <data>
         
-        <menuitem id="menu_reservation_account_invoice" name="Invoices" parent="base_fleet.menu_fleet_vehicle_reservation" groups="base_employee.head_of_unit_group"/>
-        <menuitem id="menu_rese_account_invoice_sub" name="Customer Invoices" parent="base_security.menu_reservation_account_invoice" 
+        <menuitem id="menu_reservation_account_invoice" name="Invoices" parent="base_fleet.menu_fleet_vehicle_reservation" groups="base_employee.head_of_unit_group" sequence="5"/>
+        <menuitem id="menu_rese_account_invoice_sub" name="Reservation Invoices" parent="base_security.menu_reservation_account_invoice" 
         action="account.action_invoice_tree1" sequence="1"/>
     </data>
 </odoo>

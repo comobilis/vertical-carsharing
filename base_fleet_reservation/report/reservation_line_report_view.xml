@@ -70,7 +70,7 @@
             <field name="view_mode">tree,calendar,pivot,graph</field>
         </record>
         
-        <menuitem id="menu_vehicle_reservation_schedule_report" name="Reporting" parent="base_fleet.menu_fleet_vehicle_reservation"/>
-        <menuitem id="menu_reservation_schedule_line_report" name="Vehicle Reservations" parent="menu_vehicle_reservation_schedule_report" action="action_vehicle_reservation_schedule_report"/>
+<!--        <menuitem id="menu_vehicle_reservation_schedule_report" name="Reporting" parent="base_fleet.menu_fleet_vehicle_reservation"/>-->
+<!--        <menuitem id="menu_reservation_schedule_line_report" name="Vehicle Reservations" parent="menu_vehicle_reservation_schedule_report" action="action_vehicle_reservation_schedule_report"/>-->
     </data>
 </odoo>

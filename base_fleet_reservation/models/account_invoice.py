@@ -15,11 +15,16 @@ class AccountInvoice(models.Model):
     vehicle_reservation_id = fields.Many2one(
         'fleet.vehicle.reservation',
         string="Vehicle Reservation",
-#        readonly=True,
+        readonly=True,
     )
     reservation_employee_id = fields.Many2one(
         'hr.employee',
         string="Employee",
+#        readonly=True,
+    )
+    rfid_key = fields.Char(
+        string="RFID Key",
+        copy=False,
 #        readonly=True,
     )
     department_id = fields.Many2one(
@@ -34,6 +39,11 @@ class AccountInvoice(models.Model):
         'vehicle.reservation.schedule',
         string="Reservation Schedule",
     )
+
+    @api.onchange('reservation_employee_id')
+    def onchange_employee_id(self):
+        if self.reservation_employee_id:
+            self.rfid_key = self.reservation_employee_id.rfid_key
 
     @api.model
     def _cron_send_mail(self):
@@ -52,6 +62,17 @@ class AccountInvoice(models.Model):
         for invoice in invoice_ids:
             email_template = self.env.ref('account.email_template_edi_invoice')
             email_template.send_mail(invoice.id, force_send=True)
+
+    @api.multi
+    def action_reservation_view(self):
+        reservation_lst = []
+        for rec in self:
+            for line in rec.invoice_line_ids:
+                if line.reservation_schedule_id and line.reservation_schedule_id.fleet_vehicle_reservation_id.id not in reservation_lst:
+                    reservation_lst.append(line.reservation_schedule_id.fleet_vehicle_reservation_id.id)
+        action = rec.env.ref("base_fleet_reservation.action_fleet_vehicle_reservation").read()[0]
+        action['domain'] = [('id', 'in', reservation_lst)]
+        return action
 
 
 class AccountInvoiceLine(models.Model):

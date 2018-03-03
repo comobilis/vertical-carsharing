@@ -101,7 +101,7 @@
         </record>
         
 
-        <menuitem id="menu_vehicle_expense_my_expenses" name="Vehicle Expenses" sequence="12" parent="base_fleet.menu_fleet_vehicle_reservation" groups="base.group_user"/>
+        <menuitem id="menu_vehicle_expense_my_expenses" name="Vehicle Expenses" sequence="6" parent="base_fleet.menu_fleet_vehicle_reservation" groups="base.group_user"/>
         <menuitem id="menu_vehicle_expense_my_expenses_coord_submit" name="Expenses to Submit" sequence="1" parent="menu_vehicle_expense_my_expenses" action="openauto_expense.hr_expense_actions_all_unsubmitted"/>
         <menuitem id="menu_vehicle_expense_sheet_my_reports_refused" name="Refused Reports" sequence="2" parent="menu_vehicle_expense_my_expenses" action="openauto_expense.action_hr_expense_sheet_all_refused"/>
         <menuitem id="menu_vehicle_expense_sheet_my_reports" name="Expense Reports" sequence="3" parent="menu_vehicle_expense_my_expenses" action="openauto_expense.action_hr_expense_sheet_all"/>
