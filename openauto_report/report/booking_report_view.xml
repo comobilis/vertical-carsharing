@@ -6,6 +6,7 @@
             model="calendar.event"
             report_type="qweb-pdf"
             string="Reservation Booking"
+            menu="False"
             name="openauto_report.vehicle_bookings_report"
             file="openauto_report.vehicle_bookings_report"
          />

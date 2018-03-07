@@ -291,8 +291,9 @@ class FleetVehicleReservation(models.Model):
                                 for %s to %s." % (avail_from, avail_to)))
 
             event_ids = self.env['calendar.event'].search(
-                [('vehicle_id', '=', schedule_id.vehicle_id.id)]
+                [('vehicle_id', '=', schedule_id.vehicle_id.id),('is_return','=',False)]
             )
+            print ("===================",event_ids)
             for event in event_ids:
                 if event.start_datetime >= schedule_id.start_date_time and\
                         event.start_datetime <= schedule_id.end_date_time:
@@ -465,7 +466,7 @@ class FleetVehicleReservation(models.Model):
                         'person_name': rec.person_name,
                         'vehicle_reserved_employee_id':
                         rec.reserving_employee_id.id,
-                        'company_id':rec.company_id,
+                        'company_id':rec.company_id.id,
                         'rfid_key':rec.rfid_key,}
                 event = rec.env['calendar.event'].create(vals)
                 schedule_id.calendar_event_id = event.id

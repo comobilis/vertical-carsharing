@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
         
         <!--Email template -->
         <record id="email_template_reservation_reminder" model="mail.template">
@@ -11,7 +11,7 @@
             <field name="model_id" ref="base_fleet_reservation.model_vehicle_reservation_schedule"/>
             <field name="lang">${object.partner_id.lang}</field>
             <field name="body_html"><![CDATA[
-                <p>Dear ${object.employee_id.name},
+                <p>Dear ${object.employee_id.name or ''},
 
                 <p>
                 Here is Reservation of <strong>${object.fleet_vehicle_reservation_id.name} (${object.vehicle_id.name})</strong> for <strong>${object.employee_id.name}</strong> Your reservation from ${format_tz(object.start_date_time, tz=ctx['tz'], format='%Y-%m-%d %H:%M:%S')} to ${format_tz(object.end_date_time, tz=ctx['tz'], format='%Y-%m-%d %H:%M:%S')}

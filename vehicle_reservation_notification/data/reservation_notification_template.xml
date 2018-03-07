@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
         
         <!--Email template -->
         <record id="email_template_reservation_confirm" model="mail.template">
@@ -11,7 +11,7 @@
             <field name="model_id" ref="base_fleet_reservation.model_fleet_vehicle_reservation"/>
             <field name="lang">${object.partner_id.lang}</field>
             <field name="body_html"><![CDATA[
-                <p>Dear ${object.hou_user_id.name},
+                <p>Dear ${object.hou_user_id.name or ''},
 
                 <p>
                 Here is Reservation of <strong>${object.name}</strong> for <strong>${object.reserving_employee_id.name}</strong>
@@ -40,7 +40,7 @@
             <field name="model_id" ref="base_fleet_reservation.model_fleet_vehicle_reservation"/>
             <field name="lang">${object.partner_id.lang}</field>
             <field name="body_html"><![CDATA[
-                <p>Dear ${object.coordinator_user_id.name},
+                <p>Dear ${object.coordinator_user_id.name or ''} ,
 
                 <p>
                 Here is Reservation of <strong>${object.name}</strong> for <strong>${object.reserving_employee_id.name}</strong>
@@ -69,7 +69,7 @@
             <field name="model_id" ref="base_fleet_reservation.model_fleet_vehicle_reservation"/>
             <field name="lang">${object.partner_id.lang}</field>
             <field name="body_html"><![CDATA[
-                <p>Dear ${object.manager_user_id.name},
+                <p>Dear ${object.manager_user_id.name or ''},
 
                 <p>
                 Here is Reservation of <strong>${object.name}</strong> for <strong>${object.reserving_employee_id.name}</strong>
@@ -98,7 +98,7 @@
             <field name="model_id" ref="base_fleet_reservation.model_fleet_vehicle_reservation"/>
             <field name="lang">${object.partner_id.lang}</field>
             <field name="body_html"><![CDATA[
-                <p>Dear ${object.reserving_employee_id.name},
+                <p>Dear ${object.reserving_employee_id.name or ''},
 
                 <p>
                 Here is Your Reservation of <strong>${object.name}</strong> has been Reserved You can Take your reserved Vehicle

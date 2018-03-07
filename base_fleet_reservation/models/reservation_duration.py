@@ -234,7 +234,7 @@ available for %s to %s." % (avail_from, avail_to)))
 available for %s to %s." % (avail_from, avail_to)))
 
                 event_ids = self.env['calendar.event'].search(
-                    [('vehicle_id', '=', rec.vehicle_id.id)]
+                    [('vehicle_id', '=', rec.vehicle_id.id), ('is_return', '=', False)]
                 )
                 for event in event_ids:
                     if event.start_datetime >= rec.start_date_time and\
