@@ -40,15 +40,6 @@ class BookingReportWiz(models.TransientModel):
     @api.multi
     def action_print_report(self):
         event_obj = self.env['calendar.event']
-        print ("&&&&&&&&&&&&&&&&&&",self)
-#        active_ids = self._context.get('active_ids')
-#        print ("+====================",active_ids)
-#        for rec in self:
-#            if rec.employee_ids:
-#                for employee in rec.employee_ids:
-#                    event_ids = event_obj.search([('vehicle_reserved_employee_id','in',rec.employee_ids.ids),('start','>=',rec.start_date),('stop','<=',rec.end_date)])
-#                print ("-----------------------------",event_ids)
-
         data = self.read()[0]
         return self.env.ref('openauto_report.report_vehicle_bookings').report_action(self.ids, data=data)
 

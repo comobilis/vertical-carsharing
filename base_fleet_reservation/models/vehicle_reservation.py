@@ -293,7 +293,6 @@ class FleetVehicleReservation(models.Model):
             event_ids = self.env['calendar.event'].search(
                 [('vehicle_id', '=', schedule_id.vehicle_id.id),('is_return','=',False)]
             )
-            print ("===================",event_ids)
             for event in event_ids:
                 if event.start_datetime >= schedule_id.start_date_time and\
                         event.start_datetime <= schedule_id.end_date_time:

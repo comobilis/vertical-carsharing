@@ -14,9 +14,7 @@ class OpenautoBookingReport(models.AbstractModel):
 
     @api.model
     def get_report_values(self, docids, data=None):
-        print ("^^^^^^^^^^^^^^^^^^^",data)
         active_ids = data['context'].get('active_ids')
-        print ('---------------',active_ids,)
         booking_wizard_obj = self.env['booking.report.wiz']
         booking_wizard_ids = booking_wizard_obj.browse(active_ids)
         event_obj = self.env['calendar.event']
@@ -26,9 +24,7 @@ class OpenautoBookingReport(models.AbstractModel):
             employee_ids = data.get('employee_ids')
         else:
             department = self.env['hr.department'].browse(data.get('department_id')[0])
-            print ("**************",department)
             employee_ids = department.member_ids.ids
-            print ("--------------------",employee_ids)
         booking_dict = {}
         user_ids = []
         for employee in employee_ids:
@@ -45,7 +41,6 @@ class OpenautoBookingReport(models.AbstractModel):
             user_ids = [booking_wizard_ids][0]
         else:
             user_ids = docids
-        print ("&&&&&&&&&&&&&&&&&&&&&",booking_wizard_ids,user_ids)
         return {
                     'doc_ids': user_ids,
                     'doc_model': 'booking.report.wiz',
