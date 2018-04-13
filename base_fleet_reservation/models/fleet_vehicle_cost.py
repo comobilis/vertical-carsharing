@@ -29,13 +29,14 @@ class FleetVehicleCost(models.Model):
             name=result.description
         else:
             name=result.vehicle_id.name
-        analytic_line_vals = {
-            'name': name ,
-            'account_id': result.analytic_account_id.id,
-            'amount': result.amount * -1,
-            'date': result.date,
-        }
-        result.analytic_line_id = analytic_line_obj.create(analytic_line_vals)
+        if result.analytic_account_id:
+            analytic_line_vals = {
+                'name': name ,
+                'account_id': result.analytic_account_id.id,
+                'amount': result.amount * -1,
+                'date': result.date,
+            }
+            result.analytic_line_id = analytic_line_obj.create(analytic_line_vals)
         return result
         
     @api.multi
