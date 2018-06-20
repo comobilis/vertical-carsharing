@@ -7,7 +7,6 @@
     'version': '1.0',
     'category' : 'Sales',
     'license': 'Other proprietary',
-    'price': 0.0,
     'currency': 'EUR',
     'summary': """This module allow Handle vehicle expenses.""",
     'description': """
